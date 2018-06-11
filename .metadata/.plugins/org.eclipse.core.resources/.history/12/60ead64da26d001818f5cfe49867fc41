@@ -1,0 +1,23 @@
+<!--Nemet Orsolya, noim1553, 532/1 csoport, Lab7 4.feladat -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Letter Change Game</title>
+</head>
+<body>
+	<h1>
+		<center>Letter Change Game</center>
+	</h1>
+	<h2>Rules:</h2>
+	<h3>	1. From the starting word you should get to the final word by replacing only one letter. </h3>
+	<h3>	2. Write a new word which contains only 3 letters. </h3>
+	<form action="letterChangeGame.do"  method="GET">
+	<input type='submit' id='submit' name='submit' value='Play'>
+	</form>
+	<br>
+	<br>
+	<form action="logout.do" method="POST">
+		<input type='submit' name='logout' id='logout' value='Logout'><br>
+	</form>
+</body>
+</html>

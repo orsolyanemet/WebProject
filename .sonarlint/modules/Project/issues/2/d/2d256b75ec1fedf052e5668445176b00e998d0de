@@ -1,0 +1,9 @@
+
+{squid:S1192""FDefine a constant instead of duplicating this literal "model" 3 times.(Ù‡é«ýÿÿÿÿHÌRCRITICALZ
+CODE_SMELL
+‡squid:S3776*"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(Õ½å¨þÿÿÿÿHÍRCRITICALZ
+CODE_SMELL
+msquid:S18543"ARemove this useless assignment to local variable "isCorrectWord".(ªž¸OHÎRMAJORZ
+CODE_SMELL
+Ssquid:S1148%"#Use a logger to log this exception.(Ç’ÇêHÏRMINORZVULNERABILITY
+Ssquid:S1148T"#Use a logger to log this exception.(Ç’ÇêHÐRMINORZVULNERABILITY

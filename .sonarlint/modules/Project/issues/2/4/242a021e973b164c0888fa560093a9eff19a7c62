@@ -1,0 +1,71 @@
+
+Ysquid:S1168œ"+Return an empty collection instead of null.(¥¹ïHÏ
+RMAJORZ
+CODE_SMELL
+bsquid:S20950"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿH¼
+RBLOCKERZBUG
+dsquid:S1135›"2Complete the task associated to this TODO comment.(» æÿÿÿÿÿHÌ
+RINFOZ
+CODE_SMELL
+bsquid:S2095*"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿHÁ
+RBLOCKERZBUG
+Ysquid:S1168¨"+Return an empty collection instead of null.(¥¹ïHÎ
+RMAJORZ
+CODE_SMELL
+ysquid:S1192`"IDefine a constant instead of duplicating this literal "isSolved" 4 times.(‚†‰H³
+RCRITICALZ
+CODE_SMELL
+^squid:S2095"5Close this "PreparedStatement" in a "finally" clause.(Ôıí¬H»
+RBLOCKERZBUG
+_squid:S1135§"2Complete the task associated to this TODO comment.(…ïœ†HË
+RINFOZ
+CODE_SMELL
+^squid:S2095í"5Close this "PreparedStatement" in a "finally" clause.(Ôıí¬HÇ
+RBLOCKERZBUG
+bsquid:S2095$"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿHÉ
+RBLOCKERZBUG
+^squid:S2095±"5Close this "PreparedStatement" in a "finally" clause.(Ü½¾çHÈ
+RBLOCKERZBUG
+^squid:S2095…"5Close this "PreparedStatement" in a "finally" clause.(¿êõ‡HÄ
+RBLOCKERZBUG
+^squid:S2095º"5Close this "PreparedStatement" in a "finally" clause.(Ôıí¬HÃ
+RBLOCKERZBUG
+|squid:S1192]"GDefine a constant instead of duplicating this literal "idTask" 4 times.(¨ÚòúıÿÿÿÿHµ
+RCRITICALZ
+CODE_SMELL
+^squid:S2095â"5Close this "PreparedStatement" in a "finally" clause.(ê£¥€H½
+RBLOCKERZBUG
+£squid:S1192+"sDefine a constant instead of duplicating this literal "SELECT idProgram FROM program WHERE nameProgram= ?" 3 times.(©¸ÊÉH¶
+RCRITICALZ
+CODE_SMELL
+ysquid:S1192a"IDefine a constant instead of duplicating this literal "deadline" 4 times.(ıµşHº
+RCRITICALZ
+CODE_SMELL
+csquid:S2095Ü"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿHÊ
+RBLOCKERZBUG
+]squid:S2095b"5Close this "PreparedStatement" in a "finally" clause.(Ôıí¬H¾
+RBLOCKERZBUG
+]squid:S2095X"5Close this "PreparedStatement" in a "finally" clause.(à®HÆ
+RBLOCKERZBUG
+€squid:S1192d"KDefine a constant instead of duplicating this literal "assignedTo" 3 times.(İ„ûÿÿÿÿÿH¸
+RCRITICALZ
+CODE_SMELL
+xsquid:S1192_"HDefine a constant instead of duplicating this literal "details" 4 times.(ì€•ÇH¹
+RCRITICALZ
+CODE_SMELL
+csquid:S2095Á"5Close this "PreparedStatement" in a "finally" clause.(Çé‚‹ùÿÿÿÿH¿
+RBLOCKERZBUG
+bsquid:S2095R"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿHÀ
+RBLOCKERZBUG
+csquid:S2095†"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿHÅ
+RBLOCKERZBUG
+ysquid:S1192^"IDefine a constant instead of duplicating this literal "taskName" 4 times.(¼ğŸH´
+RCRITICALZ
+CODE_SMELL
+bsquid:S2095"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿHÂ
+RBLOCKERZBUG
+šsquid:S1192c"jDefine a constant instead of duplicating this literal "SELECT username FROM user WHERE idUser= ?" 3 times.(•˜ØåH·
+RCRITICALZ
+CODE_SMELL
+squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¯‘‹â8¶èù×¾,HçRMAJORZ
+CODE_SMELL

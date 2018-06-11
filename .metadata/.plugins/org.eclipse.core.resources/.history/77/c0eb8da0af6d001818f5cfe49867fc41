@@ -1,0 +1,18 @@
+<!--Nemet Orsolya, noim1553, 532/1 csoport, Project -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Organizer</title>
+<link rel="stylesheet" type="text/css" href="styles/loginStyle.css">
+</head>
+<body>
+	<jsp:useBean id="user" scope="session" class="ro.edu.ubb.entity.User" />
+	<h1>
+		Welcome
+		<%
+		System.out.print(request.getSession().getAttribute("logedUsername"));
+	%>
+	</h1>
+
+</body>
+</html>

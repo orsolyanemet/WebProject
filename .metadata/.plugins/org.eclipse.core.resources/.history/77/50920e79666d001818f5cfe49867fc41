@@ -1,0 +1,14 @@
+package ro.edu.ubb.dao;
+
+import java.sql.Connection;
+
+import ro.edu.ubb.util.ConnectionManager;
+
+public class Example {
+
+	public static void main(String []args) {
+		ConnectionManager cm= ConnectionManager.getInstance();
+		Connection con=cm.createConnection();
+		
+	}
+}

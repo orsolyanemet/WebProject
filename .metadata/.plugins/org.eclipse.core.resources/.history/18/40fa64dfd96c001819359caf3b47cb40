@@ -1,0 +1,26 @@
+package ro.edu.ubb.common.dao;
+
+import java.util.List;
+
+import main.java.com.webproject.edu.entity.Program;
+import main.java.com.webproject.edu.entity.Task;
+import main.java.com.webproject.edu.entity.User;
+
+/**
+ * DAO interface for task.
+ * 
+ * @author Nemet Orsolya, noim1553, 532/1 csoport
+ *
+ */
+public interface TaskDAO {
+	Task createTask(Task task);
+	List<Task> getAllUnresolvedTasks(Program program);
+	List<Task> getAllResolvedTasks(Program program);
+	List<Task> getAllLateTasks(Program program);
+	Task getAllInformationAboutTask(Task task);
+	List<Task> getAllUserTasks(User user);
+	void updateTask(Task task);
+	List<Task> getAllOthersTasks(User user);
+	
+}
+

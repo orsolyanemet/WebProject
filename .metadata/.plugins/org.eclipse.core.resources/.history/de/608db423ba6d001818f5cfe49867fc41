@@ -1,0 +1,89 @@
+/*Nemet Orsolya, noim1553, 532 csoport*/
+/*Project*/
+body {
+	background-color: #61b1ad;
+}
+
+h1 {
+	text-align: center;
+	font-family: Verdana;
+	padding: 12px 20px;
+}
+
+h2, h3, h4 {
+	font-family: Verdana;
+}
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #18343c;
+}
+
+li {
+	float: left;
+	border-right: 1px solid #bbb;
+}
+
+li:last-child {
+	border-right: none;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+li a:hover:not (.active ) {
+	background-color: #A9A9A9;
+}
+
+.active {
+	background-color: #808080;
+}
+
+.right {
+	float: right;
+}
+
+.dropbtn {
+	color: white;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: fixed;
+	background-color: #18343c;
+	color: white;
+	min-width: 80px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 10;
+}
+
+.dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #A9A9A9
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}

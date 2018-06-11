@@ -1,0 +1,55 @@
+/*Nemet Orsolya, noim1553, 532 csoport*/
+/*Project*/
+body{
+	background-color: #61b1ad;
+}
+h1 {
+	text-align: center;
+	font-family: Verdana;
+	padding: 12px 20px;
+}
+h2,h3,h4{
+	font-family: Verdana;
+}
+form{
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+	display: inline-block;
+	text-align: center;
+}
+
+form > label{
+	font-family: Verdana;
+	font-size: 8pt;
+	padding-top: -3px;
+	color: red;
+}
+
+form > label > .important{
+	font-size: 9pt;
+	font-weight: 900;
+}
+input[type=text]{
+	width: 50%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+input[type=password]{
+	width: 50%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}
+input[type=submit]{
+	width: 35%;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-decoration: none;
+    font-weight:  bold;
+    text-align: center;
+    margin: 4px 2px;
+    cursor: pointer;
+}

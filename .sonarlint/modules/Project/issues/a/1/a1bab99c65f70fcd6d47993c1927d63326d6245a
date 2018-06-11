@@ -1,0 +1,5 @@
+
+†squid:S1450"YRemove the "connection" field and declare it as a local variable in the relevant methods.(ÿ›ÅÒH¸	RMINORZ
+CODE_SMELL
+šsquid:S1845"kRename field "connection" to prevent any misunderstanding/clash with field "CONNECTION" defined on line 14.(ÿ›ÅÒHº	RBLOCKERZ
+CODE_SMELL

@@ -1,0 +1,34 @@
+<!--Nemet Orsolya, noim1553, 532/1 csoport, Project -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Organizer</title>
+<link rel="stylesheet" type="text/css" href="styles/userhome.css">
+</head>
+<body>
+	<h1>
+		Welcome
+		<%
+		out.print(request.getSession().getAttribute("logedUsername"));
+	%>!
+	</h1>
+	<ul>
+		<li><a class="active" href="userhome.jsp">Home</a></li>
+		<div class="dropdown">
+			<li class="dropbtn"><a href="">Message</a>
+				<div class="dropdown-content">
+					<a href="admin/Send.jsp">Inbox</a> <a href="admin/Inbox.jsp">Trash</a>
+				</div>
+			</li>
+		</div>
+		<div class="dropdown">
+			<li class="dropbtn"><a href="">Task</a>
+				<div class="dropdown-content">
+					<a href="admin/Send.jsp">Send</a> <a href="admin/Inbox.jsp">Inbox</a>
+				</div>
+			</li>
+		</div>
+		<li class="right" onclick="logout('')"><a href="">Logout</a></li>
+	</ul>
+</body>
+</html>

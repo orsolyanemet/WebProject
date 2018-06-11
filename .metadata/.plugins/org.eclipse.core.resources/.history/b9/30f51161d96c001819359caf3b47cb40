@@ -1,0 +1,288 @@
+package main.java.com.webproject.edu.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import main.java.com.webproject.edu.common.dao.TaskDAO;
+import main.java.com.webproject.edu.entity.Program;
+import main.java.com.webproject.edu.entity.Task;
+import main.java.com.webproject.edu.entity.User;
+import main.java.com.webproject.edu.util.ConnectionManager;
+
+/**
+ * Implementation of TaskDAO.
+ * 
+ * @author Nemet Orsolya, noim1553, 532/1 csoport
+ *
+ */
+public class JdbcTaskDAO implements TaskDAO{
+
+	private ConnectionManager cm;
+
+	public JdbcTaskDAO() {
+		cm = ConnectionManager.getInstance();
+	}
+
+	@Override
+	public Task createTask(Task task) {
+		Connection connection = cm.createConnection();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"SELECT idUser FROM user WHERE username= ?");
+			preparedStatement.setString(1, task.getAssignedTo());
+			preparedStatement.execute();
+			ResultSet resultSet = preparedStatement.executeQuery();
+			Integer userId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement(
+					"SELECT idProgram FROM program WHERE nameProgram= ?");
+			preparedStatement.setString(1, task.getPartOf());
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			Integer programId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO task(idTask, taskName, details, isSolved, deadline, assignedTo, partOf) VALUES (?,?,?,?,?,?,?)",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+
+			preparedStatement.setInt(1, task.getIdTask());
+			preparedStatement.setString(2, task.getTaskName());
+			preparedStatement.setString(3, task.getDetails());
+			preparedStatement.setBoolean(4, task.getIsSolved());
+			preparedStatement.setDate(5, task.getDeadline());
+			preparedStatement.setInt(6, userId);
+			preparedStatement.setInt(7, programId);
+			preparedStatement.execute();
+
+			resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			task.setIdTask(resultSet.getInt(1));
+			preparedStatement.close();
+			resultSet.close();
+			return task;
+
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while inserting the task.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+	}
+
+	@Override
+	public List<Task> getAllUnresolvedTasks(Program program) {
+		Connection connection = cm.createConnection();
+		List<Task> tasks = new ArrayList<>();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement(
+					"SELECT idProgram FROM program WHERE nameProgram= ?");
+			preparedStatement.setString(1, program.getNameProgram());
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			Integer programId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT taskName FROM task WHERE isSolved=0 AND partOf=? ");
+			preparedStatement.setInt(1, programId);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Task task = new Task();
+				task.setIdTask(resultSet.getInt("idTask"));
+				task.setTaskName(resultSet.getString("taskName"));
+				task.setDetails(resultSet.getString("details"));
+				task.setIsSolved(resultSet.getBoolean("isSolved"));
+				task.setDeadline(resultSet.getDate("deadline"));
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT username FROM user WHERE idUser= ?");
+				ps.setInt(1, resultSet.getInt("assignedTo"));
+				ps.execute();
+				ResultSet result = ps.executeQuery();
+				String username = result.getString(1);
+				task.setAssignedTo(username);
+				task.setPartOf(program.getNameProgram());
+				tasks.add(task);
+				ps.close();
+				result.close();
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while getting all unresolved task from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return tasks;
+	}
+
+	@Override
+	public List<Task> getAllResolvedTasks(Program program) {
+		Connection connection = cm.createConnection();
+		List<Task> tasks = new ArrayList<>();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement(
+					"SELECT idProgram FROM program WHERE nameProgram= ?");
+			preparedStatement.setString(1, program.getNameProgram());
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			Integer programId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT taskName FROM task WHERE isSolved=1 AND partOf=? ");
+			preparedStatement.setInt(1, programId);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Task task = new Task();
+				task.setIdTask(resultSet.getInt("idTask"));
+				task.setTaskName(resultSet.getString("taskName"));
+				task.setDetails(resultSet.getString("details"));
+				task.setIsSolved(resultSet.getBoolean("isSolved"));
+				task.setDeadline(resultSet.getDate("deadline"));
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT username FROM user WHERE idUser= ?");
+				ps.setInt(1, resultSet.getInt("assignedTo"));
+				ps.execute();
+				ResultSet result = ps.executeQuery();
+				String username = result.getString(1);
+				task.setAssignedTo(username);
+				task.setPartOf(program.getNameProgram());
+				tasks.add(task);
+				ps.close();
+				result.close();
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while getting all resolved task from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return tasks;
+	}
+
+	@Override
+	public List<Task> getAllLateTasks(Program program) {
+		//TODO
+		return null;
+	}
+
+	@Override
+	public Task getAllInformationAboutTask(Task task) {
+		Connection connection = cm.createConnection();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM task WHERE taskName=? ");
+			preparedStatement.setString(1, task.getTaskName());
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				task.setIdTask(resultSet.getInt("idTask"));
+				task.setTaskName(resultSet.getString("taskName"));
+				task.setDetails(resultSet.getString("details"));
+				task.setIsSolved(resultSet.getBoolean("isSolved"));
+				task.setDeadline(resultSet.getDate("deadline"));
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT username FROM user WHERE idUser= ?");
+				ps.setInt(1, resultSet.getInt("assignedTo"));
+				ps.execute();
+				ResultSet result = ps.executeQuery();
+				String username = result.getString(1);
+				task.setAssignedTo(username);
+				ps = connection.prepareStatement(
+						"SELECT nameProgram FROM program WHERE idProgram= ?");
+				ps.setInt(1, resultSet.getInt("partOf"));
+				ps.execute();
+				result = ps.executeQuery();
+				String programName = result.getString(1);
+				task.setPartOf(programName);
+				ps.close();
+				result.close();
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while getting all information about task from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return task;
+	}
+
+	@Override
+	public List<Task> getAllUserTasks(User user) {
+		Connection connection = cm.createConnection();
+		List<Task> tasks = new ArrayList<>();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement(
+					"SELECT idUser FROM user WHERE username= ?");
+			preparedStatement.setString(1, user.getUsername());
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			Integer userId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT taskName FROM task WHERE assignedTo=? ");
+			preparedStatement.setInt(1, userId);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Task task = new Task();
+				task.setIdTask(resultSet.getInt("idTask"));
+				task.setTaskName(resultSet.getString("taskName"));
+				task.setDetails(resultSet.getString("details"));
+				task.setIsSolved(resultSet.getBoolean("isSolved"));
+				task.setDeadline(resultSet.getDate("deadline"));
+				task.setAssignedTo(user.getUsername());
+				PreparedStatement ps = connection.prepareStatement(
+						"SELECT nameProgram FROM program WHERE idProgram= ?");
+				ps.setInt(1, resultSet.getInt("partOf"));
+				ps.execute();
+				ResultSet result = ps.executeQuery();
+				String program = result.getString(1);
+				task.setPartOf(program);
+				tasks.add(task);
+				ps.close();
+				result.close();
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while getting all user's task from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return tasks;
+	}
+
+	@Override
+	public void updateTask(Task task) {
+		Connection connection = cm.createConnection();
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(
+					"UPDATE user SET isSolved=? where taskName = ?",
+					PreparedStatement.RETURN_GENERATED_KEYS);
+
+			preparedStatement.setBoolean(1, task.getIsSolved());
+			preparedStatement.setString(2, task.getTaskName());
+			preparedStatement.execute();
+
+			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet.next();
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while updating task.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+	}
+
+	@Override
+	public List<Task> getAllOthersTasks(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
+}

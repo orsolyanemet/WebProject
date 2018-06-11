@@ -1,0 +1,67 @@
+package ro.edu.ubb.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Nemet Orsolya, noim1553, 532/1 csoport, Lab7 4.feladat
+ *
+ */
+public class LetterChangeGameModel {
+
+	private String startingWord;
+	private String stopingWord;
+	private List<String> wordList = new ArrayList<>();
+	private String msgIncorrectWord;
+	private Integer changed;
+	private Boolean win;
+
+	public Integer getChanged() {
+		return changed;
+	}
+
+	public void setChanged(Integer changed) {
+		this.changed = changed;
+	}
+
+	public Boolean getWin() {
+		return win;
+	}
+
+	public void setWin(Boolean win) {
+		this.win = win;
+	}
+
+	public String getStartingWord() {
+		return startingWord;
+	}
+
+	public void setStartingWord(String startingWord) {
+		this.startingWord = startingWord;
+	}
+
+	public String getStopingWord() {
+		return stopingWord;
+	}
+
+	public void setStopingWord(String stopingWord) {
+		this.stopingWord = stopingWord;
+	}
+
+	public List<String> getWordList() {
+		return wordList;
+	}
+
+	public void setWordList(List<String> wordList) {
+		this.wordList = wordList;
+	}
+
+	public String getMsgIncorrectWord() {
+		return msgIncorrectWord;
+	}
+
+	public void setMsgIncorrectWord(String msgIncorrectWord) {
+		this.msgIncorrectWord = msgIncorrectWord;
+	}
+
+}

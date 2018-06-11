@@ -1,0 +1,48 @@
+/*Nemet Orsolya, noim1553, 532 csoport*/
+/*Project*/
+body{
+	background-color: #61b1ad;
+}
+h1 {
+	text-align: center;
+	font-family: Verdana;
+	padding: 12px 20px;
+}
+h2,h3,h4{
+	font-family: Verdana;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #18343c;
+}
+
+li {
+    float: left;
+    border-right:1px solid #bbb;
+}
+
+li:last-child {
+    border-right: none;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #808080;
+}
+
+.active {
+    background-color: #808080;
+}
+.right{
+	float:right;
+}

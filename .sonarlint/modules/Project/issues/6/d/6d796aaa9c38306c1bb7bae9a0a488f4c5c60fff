@@ -1,0 +1,21 @@
+
+esquid:S1068"2Remove this unused "programService" private field.(–ğv8ÎôøÖ¾,H¯RMAJORZ
+CODE_SMELL
+csquid:S1068 "/Remove this unused "taskService" private field.(¦æò´8ÎôøÖ¾,H°RMAJORZ
+CODE_SMELL
+Šsquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(¶Îµÿÿÿÿÿ8ÎôøÖ¾,H·RMAJORZBUG
+ˆsquid:S1192%"QDefine a constant instead of duplicating this literal "msgIncorrectData" 4 times.(¬Ùù˜8ÍôøÖ¾,H­RCRITICALZ
+CODE_SMELL
+csquid:S1989="'Add a "try/catch" block for "dispatch".(´Ç§şÿÿÿÿ8ÎôøÖ¾,H±RMINORZVULNERABILITY
+esquid:S1481$"2Remove this unused "reqDispatcher" local variable.(·Ñİh8ÎôøÖ¾,HºRMINORZ
+CODE_SMELL
+„squid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(ƒ”ç˜şÿÿÿÿ8ÎôøÖ¾,HµRMAJORZ
+CODE_SMELL
+^squid:S1989@"'Add a "try/catch" block for "dispatch".(ÁÊ8ÎôøÖ¾,H³RMINORZVULNERABILITY
+„squid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(–ğv8ÎôøÖ¾,H¸RMAJORZBUG
+^squid:S1989@"'Add a "try/catch" block for "dispatch".(ÁÊ8ÎôøÖ¾,H²RMINORZVULNERABILITY
+ksquid:S1068"2Remove this unused "messageService" private field.(¶Îµÿÿÿÿÿ8ÎôøÖ¾,H®RMAJORZ
+CODE_SMELL
+Šsquid:S2226"XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(•Ô¿£ùÿÿÿÿ8ÎôøÖ¾,H¶RMAJORZBUG
+…squid:S2226 "XRemove this misleading mutable servlet instance field or make it "static" and/or "final"(¦æò´8ÎôøÖ¾,H¹RMAJORZBUG
+csquid:S1989="'Add a "try/catch" block for "dispatch".(´Ç§şÿÿÿÿ8ÎôøÖ¾,H´RMINORZVULNERABILITY

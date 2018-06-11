@@ -1,0 +1,11 @@
+<!--Nemet Orsolya, noim1553, 532/1 csoport -->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Event Organizer</title>
+<link rel="stylesheet" type="text/css" href="styles/login.css">
+</head>
+<body>
+	<h1>Welcome to Event Organizer!</h1>
+</body>
+</html>

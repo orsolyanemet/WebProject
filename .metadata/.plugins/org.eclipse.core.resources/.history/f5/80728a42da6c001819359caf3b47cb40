@@ -1,0 +1,75 @@
+package ro.edu.ubb.service;
+
+import java.util.List;
+
+import ro.edu.ubb.common.dao.DAOFactory;
+import ro.edu.ubb.common.dao.UserDAO;
+import ro.edu.ubb.dao.DAOException;
+import ro.edu.ubb.entity.User;
+
+
+
+
+/**
+ * Service for user.
+ * @author Nemet Orsolya, noim1553, 532/1 csoport
+ *
+ */
+public class UserService {
+
+	private UserDAO userDAO;
+	private DAOFactory daoFactory;
+
+	public UserService() {
+		daoFactory = DAOFactory.getInstance();
+		userDAO = daoFactory.getUserDAO();
+	}
+
+	public User createUser(User user) {
+		try {
+			return userDAO.createUser(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Insert user failed.");
+		}
+	}
+
+	public void updateUser(User user) {
+		try {
+			userDAO.updateUser(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Update user failed.");
+		}
+	}
+
+	public boolean deleteUser(User user) {
+		try {
+			return userDAO.deleteUser(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Delete user failed.");
+		}
+	}
+
+	public boolean validateUser(User user) {
+		try {
+			return userDAO.validateUser(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Validate user failed.");
+		}
+	}
+
+	public User findByUsername(String username) {
+		try {
+			return userDAO.findByUsername(username);
+		} catch (DAOException e) {
+			throw new ServiceException("Finding user by username failed.");
+		}
+	}
+
+	public List<User> getAllUsers() {
+		try {
+			return userDAO.getAllUsers();
+		} catch (DAOException e) {
+			throw new ServiceException("Getting all users failed.");
+		}
+	}
+}
