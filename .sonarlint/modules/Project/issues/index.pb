@@ -1,6 +1,4 @@
 
-T
-$src/ro/edu/ubb/LetterChangeGame.java,2\d\2d256b75ec1fedf052e5668445176b00e998d0de
 V
 &src/ro/edu/ubb/util/UtilException.java,7\a\7a423dbe95e3055c1646208300ced7dc769db85e
 S
@@ -17,16 +15,12 @@ O
 src/ro/edu/ubb/entity/Task.java,2\2\227fbbb61b83edc7eabfd1fca8e11a425ee95d41
 R
 "src/ro/edu/ubb/entity/Message.java,c\7\c7207a6e5a6c5d54b16aaf69a9ad1cc77ee9582c
-Z
-*src/ro/edu/ubb/filter/MyAwesomeFilter.java,8\b\8b2dcd24c33516f10e3071965cb0e39d3ee724c6
 V
 &src/ro/edu/ubb/common/dao/TaskDAO.java,c\9\c9bdf0e4df7114aa67d48b28ecdf7cefcad0f629
 Y
 )src/ro/edu/ubb/common/dao/MessageDAO.java,b\9\b93d2057f77c09eb7e415a5ce0aebda332cd9869
 Y
 )src/ro/edu/ubb/common/dao/ProgramDAO.java,5\c\5c055eed0e5e0c4f0c4f3cb115bf98582f026a8d
-P
- src/ro/edu/ubb/LoginServlet.java,6\d\6d796aaa9c38306c1bb7bae9a0a488f4c5c60fff
 \
 ,src/ro/edu/ubb/service/ServiceException.java,e\f\efa062da26906d55b47f499697c55b7f16b5e274
 Z

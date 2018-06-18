@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>Event Organizer</title>
-<link rel="stylesheet" type="text/css" href="styles/loginstyle.css">
+<link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 </head>
 <body>
 	<h1>Login</h1>

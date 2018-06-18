@@ -27,7 +27,6 @@ public class PageFilter implements Filter {
 		if (httpServletRequest.getSession().getAttribute("Authenticated") != null) {
 			auth = true;
 		}
-
 		if (auth) {
 			filterChain.doFilter(request, response);
 		} else {

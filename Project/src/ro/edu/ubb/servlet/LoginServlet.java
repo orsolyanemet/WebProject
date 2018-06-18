@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import ro.edu.ubb.entity.RoleType;
 import ro.edu.ubb.entity.User;
 import ro.edu.ubb.service.MessageService;
 import ro.edu.ubb.service.ProgramService;
@@ -33,19 +34,11 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		RequestDispatcher reqDispatcher;
 		req.getSession().setAttribute("msgIncorrectData", "");
 		req.getSession().setAttribute("msgPwdNotGiven", "");
 		req.getSession().setAttribute("msgUsernameNotGiven", "");
-		req.getSession().setAttribute("logedUsername", "");
-		/*
-		 * if (req.getSession().getAttribute("AuthenticatedStudent") != null) {
-		 * reqDispatcher = request.getRequestDispatcher("admin/Student.jsp"); } if
-		 * (request.getSession().getAttribute("AuthenticatedTeacher") != null) {
-		 * reqDispatcher = request.getRequestDispatcher("admin/Teacher.jsp"); }
-		 */
-		//dispatch("/login.jsp", req, res);
-		
+		req.getSession().setAttribute("loggedUsername", "");
+		req.getSession().setAttribute("Authenticated","");
 	}
 
 	@Override
@@ -58,8 +51,16 @@ public class LoginServlet extends HttpServlet {
 		req.getSession().setAttribute("msgIncorrectData", "");
 		if (userService.validateUser(user)) {
 			req.getSession().setAttribute("msgIncorrectData", "");
-			req.getSession().setAttribute("logedUsername", user.getUsername());
-			dispatch("userhome.jsp", req, res);
+			req.getSession().setAttribute("loggedUsername", user.getUsername());
+			req.getSession().setAttribute("Authenticated",user);
+			if(userService.findByUsername(user.getUsername()).getRoleType()==RoleType.ADMINISTRATOR) {
+				dispatch("adminhome.jsp", req, res);
+			}
+			else if(userService.findByUsername(user.getUsername()).getRoleType()==RoleType.ORGANIZER){
+				dispatch("userhome.jsp", req, res);
+			}else {
+				dispatch("error.jsp", req, res);
+			}
 		} else {
 			req.getSession().setAttribute("msgIncorrectData", "Incorrect username or password!");
 			dispatch("login.jsp", req, res);

@@ -39,12 +39,12 @@ li a {
 	text-decoration: none;
 }
 
-li a:hover:not (.active ) {
-	background-color: #A9A9A9;
-}
-
 .active {
 	background-color: #808080;
+}
+
+li a:not(.active):hover{
+	background-color: #A9A9A9;
 }
 
 .right {

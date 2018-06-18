@@ -32,16 +32,26 @@ public class JdbcMessageDAO implements MessageDAO {
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM messages WHERE sendTo=? ");
-			preparedStatement.setString(1, username);
+			PreparedStatement preparedStatement1 = connection
+					.prepareStatement("SELECT idUser FROM user WHERE username=?");
+			preparedStatement1.setString(1, username);
+			ResultSet resultSet1 = preparedStatement1.executeQuery();
+			resultSet1.next();
+			Integer userId = resultSet1.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT * FROM message WHERE sendTo=? ORDER BY idMessage DESC ");
+			preparedStatement.setInt(1, userId);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Message message = new Message();
 				message.setIdMessage(resultSet.getInt("idMessage"));
+				message.setSendTo(username);
+				message.setSubject(resultSet.getString("subject"));
+				message.setDate(resultSet.getDate("date"));
 				message.setMess(resultSet.getString("mess"));
-				message.setSendTo(resultSet.getString("sendTo"));
 				messages.add(message);
 			}
+			preparedStatement1.close();
+			resultSet1.close();
 			preparedStatement.close();
 			resultSet.close();
 		} catch (SQLException e) {
@@ -59,17 +69,17 @@ public class JdbcMessageDAO implements MessageDAO {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("SELECT idUser FROM user WHERE username=?");
 			preparedStatement.setString(1, msg.getSendTo());
-			preparedStatement.execute();
 			ResultSet resultSet = preparedStatement.executeQuery();
 			Integer userId = resultSet.getInt(1);
 			preparedStatement = connection.prepareStatement(
-					"INSERT INTO message(idMessage, mess, idUser,sendTo ) VALUES (?,?,?,?)",
+					"INSERT INTO message(idMessage, sendTo, subject, date, mess) VALUES (?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setInt(1, msg.getIdMessage());
-			preparedStatement.setString(2, msg.getMess());
-			preparedStatement.setInt(3, userId);
-			preparedStatement.setString(4, msg.getSendTo());
+			preparedStatement.setInt(2, userId);
+			preparedStatement.setString(3, msg.getSubject());
+			preparedStatement.setDate(4, msg.getDate());
+			preparedStatement.setString(5, msg.getMess());
 			preparedStatement.execute();
 
 			resultSet = preparedStatement.getGeneratedKeys();
@@ -92,10 +102,17 @@ public class JdbcMessageDAO implements MessageDAO {
 		boolean result;
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM message WHERE sendTo = ? AND idMessage= ? ");
+					.prepareStatement("SELECT idUser FROM user WHERE username=?");
 			preparedStatement.setString(1, msg.getSendTo());
-			preparedStatement.setInt(2, msg.getIdMessage());
+			preparedStatement.execute();
 			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			Integer userId = resultSet.getInt(1);
+			preparedStatement = connection
+					.prepareStatement("DELETE FROM message WHERE sendTo = ? AND idMessage= ? ");
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setInt(2, msg.getIdMessage());
+			resultSet = preparedStatement.executeQuery();
 			result = resultSet.next();
 			preparedStatement.close();
 			resultSet.close();

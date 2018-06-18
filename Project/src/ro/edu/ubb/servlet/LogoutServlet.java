@@ -3,6 +3,7 @@ package ro.edu.ubb.servlet;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
+@WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 
 	/**
@@ -23,9 +25,7 @@ public class LogoutServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			res.setContentType("text/html");
-			req.getSession().setAttribute("Authenticated", null);
-			dispatch("/login.jsp", req, res);
+			doPost(req,res);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -34,7 +34,13 @@ public class LogoutServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			doGet(req, res);
+			res.setContentType("text/html");
+			req.getSession().setAttribute("msgIncorrectData", "");
+			req.getSession().setAttribute("msgPwdNotGiven", "");
+			req.getSession().setAttribute("msgUsernameNotGiven", "");
+			req.getSession().setAttribute("loggedUsername", "");
+			req.getSession().setAttribute("Authenticated", null);
+			dispatch("/login.jsp", req, res);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

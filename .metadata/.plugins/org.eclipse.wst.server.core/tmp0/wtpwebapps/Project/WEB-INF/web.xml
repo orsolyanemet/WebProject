@@ -6,8 +6,9 @@
     </filter>
     <filter-mapping>
         <filter-name>PageFilter</filter-name>
-        <url-pattern>/index.html</url-pattern>
-        <url-pattern>/welcome.jsp</url-pattern>
+        <url-pattern>/userhome.jsp</url-pattern>
+        <url-pattern>/adminhome.jsp</url-pattern>
+        <url-pattern>/inbox.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
