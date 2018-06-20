@@ -97,28 +97,17 @@ public class JdbcMessageDAO implements MessageDAO {
 	}
 
 	@Override
-	public boolean deleteMessage(Message msg) {
+	public boolean deleteMessage(Integer idMessage) {
 		Connection connection = cm.createConnection();
-		boolean result;
+		boolean result=false;
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT idUser FROM user WHERE username=?");
-			preparedStatement.setString(1, msg.getSendTo());
+					.prepareStatement("DELETE FROM message WHERE idMessage= ? ");
+			preparedStatement.setInt(1, idMessage);
 			preparedStatement.execute();
-			ResultSet resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			Integer userId = resultSet.getInt(1);
-			preparedStatement = connection
-					.prepareStatement("DELETE FROM message WHERE sendTo = ? AND idMessage= ? ");
-			preparedStatement.setInt(1, userId);
-			preparedStatement.setInt(2, msg.getIdMessage());
-			resultSet = preparedStatement.executeQuery();
-			result = resultSet.next();
 			preparedStatement.close();
-			resultSet.close();
-
+			result=true;
 		} catch (SQLException e) {
-
 			throw new DAOException("An error occured while deleting a message.");
 		} finally {
 			cm.closeConnection(connection);

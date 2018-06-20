@@ -7,8 +7,8 @@ package ro.edu.ubb.entity;
  *
  */
 public enum ProgramType {
-	TEAM_BUILDING("TEAM_BUILDING"), MUSIC_FESTIVAL("MUSIC_FESTIVAL"), WEDDING("WEDDING"), WEDDING_ANNIVERSARY("WEDDING_ANNIVERSARY"),BIRTHDAY(
-			"BIRTHDAY"), BUSINESS_DINNER("BUSINESS_DINNER"), SEMINAR("SEMINAR"), CONFERENCE("CONFERENCE");
+	TEAM_BUILDING("Team building"), MUSIC_FESTIVAL("Music festival"), WEDDING("Wedding"), WEDDING_ANNIVERSARY("Wedding anniversary"),BIRTHDAY(
+			"Birthday"), BUSINESS_DINNER("Business dinner"), SEMINAR("Seminar"), CONFERENCE("Conference");
 	private final String progType;
 
 	private ProgramType(String programType) {

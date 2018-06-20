@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import ro.edu.ubb.entity.RoleType;
 import ro.edu.ubb.entity.User;
-import ro.edu.ubb.service.MessageService;
-import ro.edu.ubb.service.ProgramService;
-import ro.edu.ubb.service.TaskService;
 import ro.edu.ubb.service.UserService;
 
 /**
@@ -28,9 +25,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -663150891209934794L;
 	private UserService userService = new UserService();
-	private MessageService messageService = new MessageService();
-	private ProgramService programService = new ProgramService();
-	private TaskService taskService = new TaskService();
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

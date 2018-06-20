@@ -13,5 +13,5 @@ import ro.edu.ubb.entity.Message;
 public interface MessageDAO {
 	List<Message> getAllMessages(String username);
 	Message createMessage(Message msg);
-    boolean deleteMessage(Message msg);
+    boolean deleteMessage(Integer idMessage);
 }

@@ -88,19 +88,18 @@ public class JdbcProgramDAO implements ProgramDAO {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"INSERT INTO program(idProgram, nameProgram, descriptionProgram, targetDate, location, programType) VALUES (?,?,?,?,?,?)",
+					"INSERT INTO program(nameProgram, descriptionProgram, targetDate, location, programType) VALUES (?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-
-			preparedStatement.setInt(1, program.getIdProgram());
-			preparedStatement.setString(2, program.getNameProgram());
-			preparedStatement.setString(3, program.getDescriptionProgram());
-			preparedStatement.setDate(4, program.getTargetDate());
-			preparedStatement.setString(5, program.getLocation());
-			preparedStatement.setString(6, program.getProgramType().toString());
+			preparedStatement.setString(1, program.getNameProgram());
+			preparedStatement.setString(2, program.getDescriptionProgram());
+			preparedStatement.setDate(3, program.getTargetDate());
+			preparedStatement.setString(4, program.getLocation());
+			preparedStatement.setString(5, program.getProgramType().toString());
 			preparedStatement.execute();
-
+			System.out.println("here1");
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
 			resultSet.next();
+			System.out.println("here2");
 			program.setIdProgram(resultSet.getInt(1));
 			preparedStatement.close();
 			resultSet.close();

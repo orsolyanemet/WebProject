@@ -10,12 +10,12 @@
 </head>
 <body>
 	<div class="container">
-		<div class="four-oh-four">
-			<h1>404 Error</h1>
+		<div>
+			<h1>Error</h1>
 		</div>
 		<div class="warning">
 			<h2>The page you are looking for might have been removed, had its
-				name changed, or is temporarily unavailable.</h2>
+				name changed, is temporarily unavailable or something wrong happened.</h2>
 		</div>
 		<br>
 		<input type="button" onclick="javascript:history.back()" value="Please go back to the previous page">

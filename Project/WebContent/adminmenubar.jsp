@@ -4,7 +4,7 @@
 		<div class="dropdown">
 			<li class="dropbtn"><a>Event</a>
 				<div class="dropdown-content">
-					<a href=""><i class="fa fa-plus-square"></i> Add event</a>
+					<a href="event.jsp"><i class="fa fa-plus-square"></i> Add event</a>
 				</div></li>
 		</div>
 		<div class="dropdown">

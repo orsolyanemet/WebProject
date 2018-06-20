@@ -39,9 +39,9 @@ public class MessageService {
 		}
 	}
 
-	public boolean deleteMessage(Message message) {
+	public boolean deleteMessage(Integer idMessage) {
 		try {
-			return messageDAO.deleteMessage(message);
+			return messageDAO.deleteMessage(idMessage);
 		} catch (DAOException e) {
 			throw new ServiceException("Delete message failed.");
 		}

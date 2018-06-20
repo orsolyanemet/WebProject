@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="styles/menu.css">
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/navigator.js"></script>
-<script src="jquery.js"></script> 
 <script src="js/user.js"></script>
 </head>
 <body>

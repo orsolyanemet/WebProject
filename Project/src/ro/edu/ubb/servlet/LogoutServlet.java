@@ -27,7 +27,7 @@ public class LogoutServlet extends HttpServlet {
 		try {
 			doPost(req,res);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			dispatch("/error.jsp", req, res);
 		}
 	}
 
@@ -42,7 +42,7 @@ public class LogoutServlet extends HttpServlet {
 			req.getSession().setAttribute("Authenticated", null);
 			dispatch("/login.jsp", req, res);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			dispatch("/error.jsp", req, res);
 		}
 	}
 

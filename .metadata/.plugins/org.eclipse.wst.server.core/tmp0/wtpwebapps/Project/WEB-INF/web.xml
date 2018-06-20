@@ -8,7 +8,10 @@
         <filter-name>PageFilter</filter-name>
         <url-pattern>/userhome.jsp</url-pattern>
         <url-pattern>/adminhome.jsp</url-pattern>
-        <url-pattern>/inbox.jsp</url-pattern>
+        <url-pattern>/message.jsp</url-pattern>
+        <url-pattern>/usermenubar.jsp</url-pattern>
+        <url-pattern>/adminmenubar.jsp</url-pattern>
+        <url-pattern>/event.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

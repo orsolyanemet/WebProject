@@ -12,8 +12,8 @@
 			placeholder="Enter your username..."><br> <input
 			type="password" name="password" placeholder="Enter your password..."><br>
 		<label class="incorrect_data"><span id="msg3"
-			class="important">${msgIncorrectData}</span><br></label> <input id="log"
-			type="submit" name="submit" value="Log in"><br>
+			class="important">${msgIncorrectData}</span><br></label> <br>
+		<input id="log" type="submit" name="submit" value="Log in"><br>
 	</form>
 </body>
 </html>

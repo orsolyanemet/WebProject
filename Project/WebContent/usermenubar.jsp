@@ -10,11 +10,8 @@
 				</div></li>
 		</div>
 		<div class="dropdown">
-			<li class="dropbtn"><a>Message</a>
-				<div class="dropdown-content">
-					<a href="inbox.jsp"><i class="fa fa-envelope-o"></i> Inbox</a> 
-					<a href="trash.jsp"><i class="fa fa-trash-o"></i> Trash</a>
-				</div></li>
+			<li class="dropbtn"><a href="message.jsp">Message</a>
+			</li>
 		</div>
 		<li class="right" onclick="logout('')"><a href="#logout">Logout</a></li>
 	</ul>
