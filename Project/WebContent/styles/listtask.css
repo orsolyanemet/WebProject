@@ -1,0 +1,8 @@
+/*Nemet Orsolya, noim1553, 532 csoport*/
+/*Project*/
+input[type=text]{
+	width: 300px;
+	padding: 10px 10px;
+	margin: 8px 0;
+	box-sizing: border-box;
+}

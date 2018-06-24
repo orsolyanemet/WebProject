@@ -20,9 +20,9 @@ import ro.edu.ubb.util.SecureData;
  *
  */
 public class JdbcUserDAO implements UserDAO {
-	
+
 	private ConnectionManager cm;
-	
+
 	public JdbcUserDAO() {
 		cm = ConnectionManager.getInstance();
 	}
@@ -34,7 +34,7 @@ public class JdbcUserDAO implements UserDAO {
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE roleType=\"ORGANIZER\" ");
+			preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE roleType=\"ORGANIZER\" ORDER BY username");
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				User user = new User();
@@ -69,12 +69,9 @@ public class JdbcUserDAO implements UserDAO {
 			preparedStatement.setString(1, username);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
-				user.setIdUser(resultSet.getInt("idUser"));
 				user.setFirstname(resultSet.getString("firstname"));
 				user.setLastname(resultSet.getString("lastname"));
 				user.setEmail(resultSet.getString("email"));
-				user.setUsername(resultSet.getString("username"));
-				user.setPassword(resultSet.getString("password"));
 				user.setPhoneNumber(resultSet.getString("phoneNumber"));
 				user.setRoleType(RoleType.valueOf(resultSet.getString("roleType")));
 			}
@@ -89,21 +86,69 @@ public class JdbcUserDAO implements UserDAO {
 	}
 
 	@Override
+	public User findByEmail(String email) {
+		Connection connection = cm.createConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet;
+		User user = new User();
+		try {
+			preparedStatement = connection.prepareStatement("SELECT * FROM user WHERE email= ? ");
+			preparedStatement.setString(1, email);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				user.setFirstname(resultSet.getString("firstname"));
+				user.setLastname(resultSet.getString("lastname"));
+				user.setUsername(resultSet.getString("username"));
+				user.setPhoneNumber(resultSet.getString("phoneNumber"));
+				user.setRoleType(RoleType.valueOf(resultSet.getString("roleType")));
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while finding user by email.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return user;
+	}
+
+	@Override
+	public RoleType findUserRole(String username) {
+		Connection connection = cm.createConnection();
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet;
+		RoleType role = null;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT roleType FROM user WHERE username= ? ");
+			preparedStatement.setString(1, username);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				role = RoleType.valueOf(resultSet.getString("roleType"));
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while finding  user role.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return role;
+	}
+
+	@Override
 	public User createUser(User user) {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"INSERT INTO user(idUser, firstname, lastname, email, username, password, phoneNumber, roleType) VALUES (?,?,?,?,?,?,?,?)",
+					"INSERT INTO user( firstname, lastname, email, username, password, phoneNumber, roleType) VALUES (?,?,?,?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-
-			preparedStatement.setInt(1, user.getIdUser());
-			preparedStatement.setString(2, user.getFirstname());
-			preparedStatement.setString(3, user.getLastname());
-			preparedStatement.setString(4, user.getEmail());
-			preparedStatement.setString(5, user.getUsername());
-			preparedStatement.setString(6, SecureData.convertHexToString(SecureData.hashPassword(user.getPassword())));
-			preparedStatement.setString(7, user.getPhoneNumber());
-			preparedStatement.setString(8, user.getRoleType().toString());
+			preparedStatement.setString(1, user.getFirstname());
+			preparedStatement.setString(2, user.getLastname());
+			preparedStatement.setString(3, user.getEmail());
+			preparedStatement.setString(4, user.getUsername());
+			preparedStatement.setString(5, SecureData.convertHexToString(SecureData.hashPassword(user.getPassword())));
+			preparedStatement.setString(6, user.getPhoneNumber());
+			preparedStatement.setString(7, user.getRoleType().toString());
 			preparedStatement.execute();
 
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -121,18 +166,30 @@ public class JdbcUserDAO implements UserDAO {
 	}
 
 	@Override
+	public String createCheck(User user) {
+		createUser(user);
+		User created = new User();
+		created = findByUsername(user.getUsername());
+		if (created != null) {
+			return "OK";
+		}
+		return "NULL";
+
+	}
+
+	@Override
 	public void updateUser(User user) {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"UPDATE user SET firstname=?, lastname=?, email=?, phoneNumber=? where username = ?",
+					"UPDATE user SET firstname=?, lastname=?, email=?, phoneNumber=? where idUser = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, user.getFirstname());
 			preparedStatement.setString(2, user.getLastname());
 			preparedStatement.setString(3, user.getEmail());
 			preparedStatement.setString(4, user.getPhoneNumber());
-			preparedStatement.setString(5, user.getUsername());
+			preparedStatement.setInt(5, user.getIdUser());
 			preparedStatement.execute();
 
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
@@ -147,21 +204,26 @@ public class JdbcUserDAO implements UserDAO {
 	}
 
 	@Override
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(Integer idUser) {
 		Connection connection = cm.createConnection();
 		boolean result;
 		try {
-			PreparedStatement preparedStatement = connection
-					.prepareStatement("DELETE FROM user WHERE username = ? ");
-			preparedStatement.setString(1, user.getUsername());
-
-			ResultSet resultSet = preparedStatement.executeQuery();
-			result = resultSet.next();
+			PreparedStatement  preparedStatement = connection.prepareStatement("DELETE FROM message WHERE sendTo = ? ");
+			preparedStatement.setInt(1, idUser);
+			preparedStatement.execute();
+			preparedStatement = connection.prepareStatement("DELETE FROM task WHERE assignedTo = ? ");
+			preparedStatement.setInt(1, idUser);
+			preparedStatement.execute();
+			preparedStatement = connection.prepareStatement("DELETE FROM user_program WHERE fk_user = ? ");
+			preparedStatement.setInt(1, idUser);
+			preparedStatement.execute();
+			preparedStatement = connection.prepareStatement("DELETE FROM user WHERE idUser = ? ");
+			preparedStatement.setInt(1, idUser);
+			result = preparedStatement.execute();
 			preparedStatement.close();
-			resultSet.close();
 
 		} catch (SQLException e) {
-
+			System.out.println(e);
 			throw new DAOException("An error occured while deleting a user.");
 		} finally {
 			cm.closeConnection(connection);
@@ -177,13 +239,25 @@ public class JdbcUserDAO implements UserDAO {
 			PreparedStatement preparedStatement = connection
 					.prepareStatement("SELECT * FROM user WHERE username = ? and password = ?");
 			preparedStatement.setString(1, user.getUsername());
-			//preparedStatement.setString(2, SecureData.convertHexToString(SecureData.hashPassword(user.getPassword())));
-			preparedStatement.setString(2, user.getPassword());
+			RoleType userRole=findUserRole(user.getUsername());
+			user.setRoleType(userRole);
+			if(user.getRoleType()==RoleType.ADMINISTRATOR) {
+				preparedStatement.setString(2, user.getPassword());
+			}
+			else { 
+				if(user.getRoleType()==RoleType.ORGANIZER){
+				preparedStatement.setString(2, SecureData.convertHexToString(SecureData.hashPassword(user.getPassword())));
+				}
+				else {
+					preparedStatement.setString(2, " ");
+				}
+			}
 			ResultSet resultSet = preparedStatement.executeQuery();
 			result = resultSet.next();
 			preparedStatement.close();
 			resultSet.close();
 		} catch (SQLException e) {
+			System.out.println(e);
 			throw new DAOException("An error occured during the validation of user.");
 		} finally {
 			cm.closeConnection(connection);

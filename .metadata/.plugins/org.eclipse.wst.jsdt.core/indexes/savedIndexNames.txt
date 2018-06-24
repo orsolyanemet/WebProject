@@ -8,4 +8,3 @@ INDEX VERSION 1.4+D:\Egyetem\VI.felev\Webprog\Projekt\.metadata\.plugins\org.ecl
 893422368.index
 449384428.index
 1717502017.index
-1342055493.index

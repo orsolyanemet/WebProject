@@ -7,7 +7,7 @@ package ro.edu.ubb.entity;
  *
  */
 public enum ProgramType {
-	TEAM_BUILDING("Team building"), MUSIC_FESTIVAL("Music festival"), WEDDING("Wedding"), WEDDING_ANNIVERSARY("Wedding anniversary"),BIRTHDAY(
+	CHRISTENING("Christening"),TEAM_BUILDING("Team building"), MUSIC_FESTIVAL("Music festival"), WEDDING("Wedding"), WEDDING_ANNIVERSARY("Wedding anniversary"),BIRTHDAY(
 			"Birthday"), BUSINESS_DINNER("Business dinner"), SEMINAR("Seminar"), CONFERENCE("Conference");
 	private final String progType;
 
@@ -18,5 +18,10 @@ public enum ProgramType {
 	public String getProgramType() {
 		return progType;
 	}
+	
+	public static ProgramType valueOfIgnoreCase(String programType) {
+		programType=programType.replace(' ', '_');
+        return valueOf(programType.toUpperCase());
+    }
 
 }

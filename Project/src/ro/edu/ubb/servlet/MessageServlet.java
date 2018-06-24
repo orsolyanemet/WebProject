@@ -43,7 +43,7 @@ public class MessageServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			if(messageService.deleteMessage(Integer.parseInt(req.getParameter("idToDelete").toString()))==true) {
+			if(messageService.deleteMessage(Integer.parseInt(req.getParameter("idToDelete")))) {
 				dispatch("message.jsp", req, res);
 			}
 			else {

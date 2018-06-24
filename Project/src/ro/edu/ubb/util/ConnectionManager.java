@@ -15,7 +15,7 @@ public class ConnectionManager {
 	private static final String CONNECTION = "jdbc:mysql://localhost:3366/webproj";
 	private static final String USERNAME = "root";
 	private static final String PASS = "11235813";
-	private Connection connection;
+	private Connection conn;
 	private static ConnectionManager cm;
 
 	private ConnectionManager() {
@@ -35,11 +35,11 @@ public class ConnectionManager {
 	
 	public Connection createConnection() {
 		try {
-			connection = DriverManager.getConnection(CONNECTION, USERNAME, PASS);
+			conn = DriverManager.getConnection(CONNECTION, USERNAME, PASS);
 		} catch (SQLException e) {
 			throw new UtilException("An error occured while creating database connection.");
 		}
-		return connection;
+		return conn;
 	}
 
 	public void closeConnection(Connection connection) {

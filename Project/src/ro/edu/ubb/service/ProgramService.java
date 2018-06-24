@@ -47,6 +47,14 @@ public class ProgramService {
 			throw new ServiceException("Insert program failed.");
 		}
 	}
+	
+	public String createCheck(Program program) {
+		try {
+			return programDAO.createCheck(program);
+		} catch (DAOException e) {
+			throw new ServiceException("Create check failed.");
+		}
+	}
 
 	public void updateProgram(Program program) {
 		try {

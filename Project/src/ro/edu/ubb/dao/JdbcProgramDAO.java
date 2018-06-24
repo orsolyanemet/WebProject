@@ -33,7 +33,7 @@ public class JdbcProgramDAO implements ProgramDAO {
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
 		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM program ");
+			preparedStatement = connection.prepareStatement("SELECT * FROM program ORDER BY nameProgram");
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				Program program = new Program();
@@ -42,7 +42,12 @@ public class JdbcProgramDAO implements ProgramDAO {
 				program.setDescriptionProgram(resultSet.getString("descriptionProgram"));
 				program.setTargetDate(resultSet.getDate("targetDate"));
 				program.setLocation(resultSet.getString("location"));
-				program.setProgramType(ProgramType.valueOf(resultSet.getString("programType")));
+				PreparedStatement prepStat=connection.prepareStatement("SELECT programTypeName FROM programtype WHERE idProgramType=? ");;
+				prepStat.setInt(1, resultSet.getInt("programType"));
+				prepStat.execute();
+				ResultSet result=prepStat.executeQuery();
+				result.next();
+				program.setProgramType(ProgramType.valueOfIgnoreCase(result.getString("programTypeName")));
 				programs.add(program);
 			}
 			preparedStatement.close();
@@ -71,7 +76,13 @@ public class JdbcProgramDAO implements ProgramDAO {
 				program.setDescriptionProgram(resultSet.getString("descriptionProgram"));
 				program.setTargetDate(resultSet.getDate("targetDate"));
 				program.setLocation(resultSet.getString("location"));
-				program.setProgramType(ProgramType.valueOf(resultSet.getString("programType")));
+				PreparedStatement preState=connection.prepareStatement("SELECT programTypeName FROM programtype WHERE idProgramType=?");
+				preState.setInt(1,resultSet.getInt("programType"));
+				preState.execute();
+				ResultSet result=preState.executeQuery();
+				result.next();
+				String programTypeName= result.getString(1);
+				program.setProgramType(ProgramType.valueOfIgnoreCase(programTypeName));
 			}
 			preparedStatement.close();
 			resultSet.close();
@@ -88,18 +99,22 @@ public class JdbcProgramDAO implements ProgramDAO {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"INSERT INTO program(nameProgram, descriptionProgram, targetDate, location, programType) VALUES (?,?,?,?,?)",
-					PreparedStatement.RETURN_GENERATED_KEYS);
+					"SELECT idProgramType FROM programtype WHERE programTypeName= ?");
+			preparedStatement.setString(1, program.getProgramType().toString());
+			preparedStatement.execute();
+			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			Integer programTypeId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement(
+					"INSERT INTO program(nameProgram, descriptionProgram, targetDate, location, programType) VALUES (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, program.getNameProgram());
 			preparedStatement.setString(2, program.getDescriptionProgram());
 			preparedStatement.setDate(3, program.getTargetDate());
 			preparedStatement.setString(4, program.getLocation());
-			preparedStatement.setString(5, program.getProgramType().toString());
+			preparedStatement.setInt(5, programTypeId);
 			preparedStatement.execute();
-			System.out.println("here1");
-			ResultSet resultSet = preparedStatement.getGeneratedKeys();
+			resultSet = preparedStatement.getGeneratedKeys();
 			resultSet.next();
-			System.out.println("here2");
 			program.setIdProgram(resultSet.getInt(1));
 			preparedStatement.close();
 			resultSet.close();
@@ -110,6 +125,17 @@ public class JdbcProgramDAO implements ProgramDAO {
 		} finally {
 			cm.closeConnection(connection);
 		}
+	}
+	
+	@Override 
+	public String createCheck(Program program) {
+		createProgram(program);
+		Program created=new Program();
+		created=findProgramByName(program.getNameProgram());
+		if(created!=null) {
+			return "OK";
+		}
+		return "NULL";		
 	}
 
 	@Override

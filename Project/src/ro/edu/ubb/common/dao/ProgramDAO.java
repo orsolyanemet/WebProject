@@ -14,5 +14,6 @@ public interface ProgramDAO {
 	List<Program> getAllPrograms();
 	Program findProgramByName(String programName);
 	Program createProgram(Program program);
+	String createCheck(Program program);
 	void updateProgram(Program program);
 }

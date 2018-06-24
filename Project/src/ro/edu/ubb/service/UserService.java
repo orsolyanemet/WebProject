@@ -30,6 +30,14 @@ public class UserService {
 			throw new ServiceException("Insert user failed.");
 		}
 	}
+	
+	public String createCheck(User user) {
+		try {
+			return userDAO.createCheck(user);
+		} catch (DAOException e) {
+			throw new ServiceException("Create check user failed.");
+		}
+	}
 
 	public void updateUser(User user) {
 		try {
@@ -39,9 +47,9 @@ public class UserService {
 		}
 	}
 
-	public boolean deleteUser(User user) {
+	public boolean deleteUser(Integer idUser) {
 		try {
-			return userDAO.deleteUser(user);
+			return userDAO.deleteUser(idUser);
 		} catch (DAOException e) {
 			throw new ServiceException("Delete user failed.");
 		}
@@ -60,6 +68,14 @@ public class UserService {
 			return userDAO.findByUsername(username);
 		} catch (DAOException e) {
 			throw new ServiceException("Finding user by username failed.");
+		}
+	}
+	
+	public User findByEmail(String email) {
+		try {
+			return userDAO.findByEmail(email);
+		} catch (DAOException e) {
+			throw new ServiceException("Finding user by email failed.");
 		}
 	}
 

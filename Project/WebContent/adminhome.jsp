@@ -1,4 +1,5 @@
 <!--Nemet Orsolya, noim1553, 532/1 csoport, Project -->
+<%@page contentType="text/html" pageEncoding="UTF-8" errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>

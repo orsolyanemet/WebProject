@@ -1,4 +1,5 @@
 <!--Nemet Orsolya, noim1553, 532/1 csoport, Project -->
+ <%@page contentType="text/html" pageEncoding="UTF-8" isErrorPage="true"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>

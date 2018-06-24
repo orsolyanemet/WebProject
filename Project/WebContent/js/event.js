@@ -12,7 +12,7 @@ function validateEventName() {
 	}
 }
 function validateLocation() {
-	var lo = document.forms["eventForm"]["location"].value;
+	var lo = document.forms["eventForm"]["eventLocation"].value;
 	if (lo == "") {
 		document.getElementById("errorLocation").innerHTML = "Location must be filled out!";
 	} else if (lo[0] != lo[0].toUpperCase()) {
@@ -22,7 +22,7 @@ function validateLocation() {
 	}
 }
 function validateDate() {
-	var date = document.forms["eventForm"]["date"].value;
+	var date = document.forms["eventForm"]["eventDate"].value;
 	var d = new Date(date);
 	if (date == "") {
 		document.getElementById("errorDate").innerHTML = "Event date must be selected!";
@@ -52,9 +52,10 @@ function submitButtonClicked(){
 		error=true;
 	}
 	if(!error){
+		var urlDepth='';
 		$.ajax({
 			type : "POST",
-			url : "event.do",
+			url : urlDepth +"event.do",
 			data : {
 				eventName : document.forms["eventForm"]["eventName"].value,
 				eventType : document.getElementById("programType").value,
@@ -64,15 +65,12 @@ function submitButtonClicked(){
 			},
 			dataType : "json",
 			success : function(data) {
-				var respons = data.respons;
-				if(respons.localeCompare("OK")==0){
-					document.getElementById("eventResult").innerHTML = "The event has been successfully created.";
+					console.log(data);
 					document.forms["eventForm"]["eventName"].value="";
 					document.getElementById("programType").value="";
 					document.forms["eventForm"]["eventLocation"].value= "";
 					document.getElementById("eventDate").value= "";
 					document.forms["eventForm"]["eventDescription"].value = "";
-				}
 			}
 		});
 	}

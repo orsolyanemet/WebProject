@@ -50,14 +50,15 @@ public class EventServlet extends HttpServlet{
 			Program program=new Program();
 			program.setNameProgram(req.getParameter("eventName"));
 			program.setDescriptionProgram(req.getParameter("eventDescription"));
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-mm-yyyy");
+			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			String stringDate=req.getParameter("eventDate");
 			java.util.Date date = simpleDateFormat.parse(stringDate);
 			java.sql.Date sqlDate = new java.sql.Date(date.getTime());  
 			program.setTargetDate(sqlDate);
 			program.setLocation(req.getParameter("eventLocation"));
-			program.setProgramType(ProgramType.valueOf(req.getParameter("eventType")));
-			programService.createProgram(program);
+			program.setProgramType(ProgramType.valueOfIgnoreCase(req.getParameter("eventType")));
+			programService.createCheck(program);
+			//dispatch("index.html",req,res);
 		}
 		catch(ServiceException | ParseException e) {
 			dispatch("error.jsp",req,res);

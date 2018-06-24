@@ -7,7 +7,6 @@ import ro.edu.ubb.common.dao.TaskDAO;
 import ro.edu.ubb.dao.DAOException;
 import ro.edu.ubb.entity.Program;
 import ro.edu.ubb.entity.Task;
-import ro.edu.ubb.entity.User;
 
 /**
  * Service for task.
@@ -65,9 +64,9 @@ public class TaskService {
 		}
 	}
 
-	public List<Task> getAllUserTasks(User user) {
+	public List<Task> getAllUserTasks(String username) {
 		try {
-			return taskDAO.getAllUserTasks(user);
+			return taskDAO.getAllUserTasks(username);
 		} catch (DAOException e) {
 			throw new ServiceException("Getting all user's tasks failed.");
 		}
@@ -81,9 +80,9 @@ public class TaskService {
 		}
 	}
 	
-	public List<Task> getAllOthersTasks(User user) {
+	public List<Task> getAllOthersTasks(String username) {
 		try {
-			return taskDAO.getAllOthersTasks(user);
+			return taskDAO.getAllOthersTasks(username);
 		} catch (DAOException e) {
 			throw new ServiceException("Getting all other user's tasks failed.");
 		}

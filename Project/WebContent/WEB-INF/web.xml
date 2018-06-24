@@ -12,6 +12,12 @@
         <url-pattern>/usermenubar.jsp</url-pattern>
         <url-pattern>/adminmenubar.jsp</url-pattern>
         <url-pattern>/event.jsp</url-pattern>
+        <url-pattern>/neworganizer.jsp</url-pattern>
+        <url-pattern>/otherstask.jsp</url-pattern>
+        <url-pattern>/composemessage.jsp</url-pattern>
+        <url-pattern>/addtask.jsp</url-pattern>
+        <url-pattern>/deleteuser.jsp</url-pattern>
+        <url-pattern>/listtask.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

@@ -14,7 +14,6 @@ function logout(urlDepth) {
 }
 function deleteMessage(button,urlDepth){
 	deleteElementId=button.name;
-	console.log(document.getElementsByName(button.name)[0].name);
 	$.ajax({
 		type : "POST",
 		url : urlDepth + "message.do",

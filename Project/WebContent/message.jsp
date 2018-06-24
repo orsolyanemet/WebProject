@@ -3,7 +3,7 @@
 <%@page import="ro.edu.ubb.service.MessageService"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,14 +39,12 @@
 				<tbody>
 					<tr>
 						<%
-							Integer i = 0;
 							MessageService messageService = new MessageService();
 							request.getSession().setAttribute("userMessages",
 									messageService.getAllMessages((String) request.getSession().getAttribute("loggedUsername")));
 							List<Message> messages = (List<Message>) request.getSession().getAttribute("userMessages");
 							if (messages != null)
 								for (Message message : messages) {
-									i++;
 						%>
 						<td><button id="button" onClick="deleteMessage(this,'')" name=<%=message.getIdMessage()%>><i class="fa fa-trash"></i></button></td>
 						<td>Administrator</td>

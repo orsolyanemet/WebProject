@@ -67,29 +67,29 @@ public class JdbcMessageDAO implements MessageDAO {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection
-					.prepareStatement("SELECT idUser FROM user WHERE username=?");
+					.prepareStatement("SELECT idUser FROM user WHERE email=?");
 			preparedStatement.setString(1, msg.getSendTo());
+			preparedStatement.execute();
 			ResultSet resultSet = preparedStatement.executeQuery();
+			resultSet.next();
 			Integer userId = resultSet.getInt(1);
 			preparedStatement = connection.prepareStatement(
-					"INSERT INTO message(idMessage, sendTo, subject, date, mess) VALUES (?,?,?,?,?)",
+					"INSERT INTO message( sendTo, subject, date, mess) VALUES (?,?,?,?)",
 					PreparedStatement.RETURN_GENERATED_KEYS);
-
-			preparedStatement.setInt(1, msg.getIdMessage());
-			preparedStatement.setInt(2, userId);
-			preparedStatement.setString(3, msg.getSubject());
-			preparedStatement.setDate(4, msg.getDate());
-			preparedStatement.setString(5, msg.getMess());
+			preparedStatement.setInt(1, userId);
+			preparedStatement.setString(2, msg.getSubject());
+			preparedStatement.setDate(3, msg.getDate());
+			preparedStatement.setString(4, msg.getMess());
 			preparedStatement.execute();
-
-			resultSet = preparedStatement.getGeneratedKeys();
-			resultSet.next();
-			msg.setIdMessage(resultSet.getInt(1));
+			ResultSet rSet = preparedStatement.getGeneratedKeys();
+			rSet.next();
+			msg.setIdMessage(rSet.getInt(1));
 			preparedStatement.close();
 			resultSet.close();
 			return msg;
 
 		} catch (SQLException e) {
+			System.out.println(e);
 			throw new DAOException("An error occured while inserting the message.");
 		} finally {
 			cm.closeConnection(connection);

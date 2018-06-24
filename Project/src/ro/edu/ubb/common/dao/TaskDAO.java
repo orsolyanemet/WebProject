@@ -1,10 +1,10 @@
 package ro.edu.ubb.common.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import ro.edu.ubb.entity.Program;
 import ro.edu.ubb.entity.Task;
-import ro.edu.ubb.entity.User;
 
 /**
  * DAO interface for task.
@@ -13,14 +13,15 @@ import ro.edu.ubb.entity.User;
  *
  */
 public interface TaskDAO {
+	boolean checkDeadline(Date deadline,Integer programId);
 	Task createTask(Task task);
 	List<Task> getAllUnresolvedTasks(Program program);
 	List<Task> getAllResolvedTasks(Program program);
 	List<Task> getAllLateTasks(Program program);
 	Task getAllInformationAboutTask(Task task);
-	List<Task> getAllUserTasks(User user);
+	List<Task> getAllUserTasks(String username);
 	void updateTask(Task task);
-	List<Task> getAllOthersTasks(User user);
+	List<Task> getAllOthersTasks(String username);
 	
 }
 
