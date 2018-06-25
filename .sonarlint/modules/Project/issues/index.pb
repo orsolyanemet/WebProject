@@ -53,3 +53,7 @@ Z
 *src/ro/edu/ubb/util/ConnectionManager.java,a\1\a1bab99c65f70fcd6d47993c1927d63326d6245a
 S
 #src/ro/edu/ubb/dao/JdbcUserDAO.java,c\6\c6309bb0084437000527f787ff202bf48d2a751a
+N
+WebContent/styles/userhome.css,8\7\87c78a7d41046de6fff1768fa9017eb022143443
+G
+WebContent/usermenu.jsp,4\4\444f4cd859478c82782b32b4fe526c788b49d646

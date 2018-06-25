@@ -16,13 +16,15 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/navigator.js"></script>
 <script src="js/admin.js"></script>
-<script src="js/deleteuser.js"></script>
+<script src="js/delete.js"></script>
 </head>
 <body>
 	<h1>Delete organizer</h1>
 	<div id="includedMenubar"></div>
 	<br>
 	<br>
+	<input type="button" class="button" value="Refresh"
+		onclick="refreshTable()">
 		<div class="panel panel-default inbox" id="editPanel">
 			<div class="table-responsive">
 				<table id="myTable"

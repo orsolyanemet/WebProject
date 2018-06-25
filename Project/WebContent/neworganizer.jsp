@@ -13,7 +13,7 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/navigator.js"></script>
 <script src="js/admin.js"></script>
-<script src="js/neworganizer.js"></script>
+<script src="js/addorganizer.js"></script>
 </head>
 <body>
 	<h1>Add organizer</h1>

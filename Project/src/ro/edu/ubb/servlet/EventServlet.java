@@ -58,7 +58,6 @@ public class EventServlet extends HttpServlet{
 			program.setLocation(req.getParameter("eventLocation"));
 			program.setProgramType(ProgramType.valueOfIgnoreCase(req.getParameter("eventType")));
 			programService.createCheck(program);
-			//dispatch("index.html",req,res);
 		}
 		catch(ServiceException | ParseException e) {
 			dispatch("error.jsp",req,res);

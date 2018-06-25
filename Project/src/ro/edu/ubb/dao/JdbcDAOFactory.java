@@ -4,6 +4,7 @@ import ro.edu.ubb.common.dao.DAOFactory;
 import ro.edu.ubb.common.dao.MessageDAO;
 import ro.edu.ubb.common.dao.ProgramDAO;
 import ro.edu.ubb.common.dao.ProgramTypeDAO;
+import ro.edu.ubb.common.dao.ReportDAO;
 import ro.edu.ubb.common.dao.TaskDAO;
 import ro.edu.ubb.common.dao.UserDAO;
 
@@ -38,6 +39,11 @@ public class JdbcDAOFactory extends DAOFactory{
 	@Override
 	public ProgramTypeDAO getProgramTypeDAO() {
 		return new JdbcProgramTypeDAO();
+	}
+	
+	@Override
+	public ReportDAO getReportDAO() {
+		return new JdbcReportDAO();
 	}
 
 }

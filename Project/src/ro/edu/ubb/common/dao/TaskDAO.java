@@ -15,7 +15,7 @@ import ro.edu.ubb.entity.Task;
 public interface TaskDAO {
 	boolean checkDeadline(Date deadline,Integer programId);
 	Task createTask(Task task);
-	List<Task> getAllUnresolvedTasks(Program program);
+	List<Task> getAllUnresolvedTasks(String username);
 	List<Task> getAllResolvedTasks(Program program);
 	List<Task> getAllLateTasks(Program program);
 	Task getAllInformationAboutTask(Task task);

@@ -23,6 +23,14 @@ public class ProgramService {
 		programDAO = daoFactory.getProgramDAO();
 	}
 	
+	public List<Program> getAllUsersPrograms(String username) {
+		try {
+			return programDAO.getAllUsersPrograms(username);
+		} catch (DAOException e) {
+			throw new ServiceException("Getting all programs failed.");
+		}
+	}
+	
 	public List<Program> getAllPrograms() {
 		try {
 			return programDAO.getAllPrograms();

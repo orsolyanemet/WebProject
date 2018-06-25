@@ -32,9 +32,9 @@ public class TaskService {
 		}
 	}
 
-	public List<Task> getAllUnresolvedTasks(Program program) {
+	public List<Task> getAllUnresolvedTasks(String username) {
 		try {
-			return taskDAO.getAllUnresolvedTasks(program);
+			return taskDAO.getAllUnresolvedTasks(username);
 		} catch (DAOException e) {
 			throw new ServiceException("Getting all unresolved tasks failed.");
 		}

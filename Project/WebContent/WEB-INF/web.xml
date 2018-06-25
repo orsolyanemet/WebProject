@@ -18,6 +18,7 @@
         <url-pattern>/addtask.jsp</url-pattern>
         <url-pattern>/deleteuser.jsp</url-pattern>
         <url-pattern>/listtask.jsp</url-pattern>
+        <url-pattern>/changestatus.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

@@ -1,0 +1,9 @@
+/*Nemet Orsolya, noim1553, 532 csoport*/
+/*Project*/
+.errorlabel{
+	font-family: sans-serif;
+	font-size: 14pt;
+	padding-top: -3px;
+	color: red;
+	font-weight:  bold;
+}

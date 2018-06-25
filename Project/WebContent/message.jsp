@@ -17,12 +17,15 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/navigator.js"></script>
 <script src="js/user.js"></script>
+<script src="js/message.js"></script>
 </head>
 <body>
 	<h1>Message</h1>
 	<div id="includedMenubar"></div>
 	<br>
 	<br>
+	<input type="button" class="button" value="Refresh"
+		onclick="refreshTable()">
 	<div class="panel panel-default inbox" id="trashPanel">
 		<div class="table-responsive">
 			<table id="myTable"

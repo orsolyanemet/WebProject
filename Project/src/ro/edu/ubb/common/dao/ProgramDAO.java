@@ -11,6 +11,7 @@ import ro.edu.ubb.entity.Program;
  *
  */
 public interface ProgramDAO {
+	List<Program> getAllUsersPrograms(String username);
 	List<Program> getAllPrograms();
 	Program findProgramByName(String programName);
 	Program createProgram(Program program);

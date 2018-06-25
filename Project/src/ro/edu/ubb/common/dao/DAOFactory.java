@@ -23,5 +23,7 @@ public abstract class DAOFactory {
 	public abstract ProgramDAO getProgramDAO();
 	
 	public abstract ProgramTypeDAO getProgramTypeDAO();
+	
+	public abstract ReportDAO getReportDAO();
 
 }

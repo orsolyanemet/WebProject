@@ -1,5 +1,6 @@
 package ro.edu.ubb.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -8,8 +9,13 @@ import java.sql.Date;
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
-public class Task{
+public class Task implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5651499812855662810L;
+
 	private Integer idTask;
 
 	private String taskName;

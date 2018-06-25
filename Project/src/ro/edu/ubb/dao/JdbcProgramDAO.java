@@ -42,7 +42,7 @@ public class JdbcProgramDAO implements ProgramDAO {
 				program.setDescriptionProgram(resultSet.getString("descriptionProgram"));
 				program.setTargetDate(resultSet.getDate("targetDate"));
 				program.setLocation(resultSet.getString("location"));
-				PreparedStatement prepStat=connection.prepareStatement("SELECT programTypeName FROM programtype WHERE idProgramType=? ");;
+				PreparedStatement prepStat=connection.prepareStatement("SELECT programTypeName FROM programtype WHERE idProgramType=? ");
 				prepStat.setInt(1, resultSet.getInt("programType"));
 				prepStat.execute();
 				ResultSet result=prepStat.executeQuery();
@@ -54,6 +54,54 @@ public class JdbcProgramDAO implements ProgramDAO {
 			resultSet.close();
 		} catch (SQLException e) {
 			throw new DAOException("An error occured while getting all programs from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return programs;
+	}
+	
+	@Override
+	public List<Program> getAllUsersPrograms(String username) {
+		Connection connection = cm.createConnection();
+		List<Program> programs = new ArrayList<>();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT idUser FROM user WHERE username=?");
+			preparedStatement.setString(1, username);
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			Integer idUser=resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT fk_program FROM user_program WHERE fk_user=?");
+			preparedStatement.setInt(1, idUser);
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				PreparedStatement prepStat=connection.prepareStatement("SELECT * FROM program WHERE idProgram=? ");
+				prepStat.setInt(1, resultSet.getInt("fk_program"));
+				prepStat.execute();
+				ResultSet result=prepStat.executeQuery();
+				result.next();
+				Program program = new Program();
+				program.setIdProgram(result.getInt("idProgram"));
+				program.setNameProgram(result.getString("nameProgram"));
+				program.setDescriptionProgram(result.getString("descriptionProgram"));
+				program.setTargetDate(result.getDate("targetDate"));
+				program.setLocation(result.getString("location"));
+				prepStat=connection.prepareStatement("SELECT programTypeName FROM programtype WHERE idProgramType=? ");
+				prepStat.setInt(1, result.getInt("programType"));
+				prepStat.execute();
+				result=prepStat.executeQuery();
+				result.next();
+				program.setProgramType(ProgramType.valueOfIgnoreCase(result.getString("programTypeName")));
+				programs.add(program);
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			System.out.println(e);
+			throw new DAOException("An error occured while getting all user's programs from database.");
 		} finally {
 			cm.closeConnection(connection);
 		}
