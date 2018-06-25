@@ -40,11 +40,19 @@ public class TaskService {
 		}
 	}
 
-	public List<Task> getAllResolvedTasks(Program program) {
+	public List<Task> getAllResolvedTasks(String programName) {
 		try {
-			return taskDAO.getAllResolvedTasks(program);
+			return taskDAO.getAllResolvedTasks(programName);
 		} catch (DAOException e) {
 			throw new ServiceException("Getting all resolved tasks failed.");
+		}
+	}
+	
+	public List<Task> getAllUnresolvedTasksForAnEvent(String programName) {
+		try {
+			return taskDAO.getAllUnresolvedTasksForAnEvent(programName);
+		} catch (DAOException e) {
+			throw new ServiceException("Getting all unresolved tasks for an event failed.");
 		}
 	}
 

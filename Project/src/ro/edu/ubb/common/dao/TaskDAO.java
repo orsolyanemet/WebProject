@@ -16,7 +16,8 @@ public interface TaskDAO {
 	boolean checkDeadline(Date deadline,Integer programId);
 	Task createTask(Task task);
 	List<Task> getAllUnresolvedTasks(String username);
-	List<Task> getAllResolvedTasks(Program program);
+	List<Task> getAllResolvedTasks(String programName);
+	List<Task> getAllUnresolvedTasksForAnEvent(String programName);
 	List<Task> getAllLateTasks(Program program);
 	Task getAllInformationAboutTask(Task task);
 	List<Task> getAllUserTasks(String username);

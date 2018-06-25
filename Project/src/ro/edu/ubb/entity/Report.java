@@ -1,5 +1,6 @@
 package ro.edu.ubb.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -8,8 +9,13 @@ import java.sql.Date;
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
-public class Report {
+public class Report implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8016085986005506682L;
+
 	private Integer idReport;
 
 	private String report;

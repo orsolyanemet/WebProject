@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	private static final long serialVersionUID = -663150891209934794L;
 	private UserService userService = new UserService();
-
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.getSession().setAttribute("msgIncorrectData", "");

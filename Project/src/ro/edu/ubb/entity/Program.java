@@ -1,5 +1,6 @@
 package ro.edu.ubb.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -10,7 +11,12 @@ import java.util.List;
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
-public class Program{
+public class Program implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	private Integer idProgram;
 

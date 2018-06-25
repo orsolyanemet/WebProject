@@ -11,7 +11,7 @@
 			<li class="dropbtn"><a>Task</a>
 				<div class="dropdown-content">
 					<a href="addtask.jsp"><i class="fa fa-plus-square"></i> Add task</a> 
-					<a href=""><i class="fa fa-list"></i> List tasks</a>
+					<a href="eventtasks.jsp"><i class="fa fa-list"></i> List tasks</a>
 				</div></li>
 		</div>
 		<div class="dropdown">

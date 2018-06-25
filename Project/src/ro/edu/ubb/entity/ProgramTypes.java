@@ -1,13 +1,19 @@
 package ro.edu.ubb.entity;
 
+import java.io.Serializable;
+
 /**
  * Entity for the ProgramTypes.
  * 
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
-public class ProgramTypes {
+public class ProgramTypes implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer idProgramType;
 	private String programTypeName;
 

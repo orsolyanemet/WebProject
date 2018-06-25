@@ -149,18 +149,19 @@ public class JdbcTaskDAO implements TaskDAO {
 	}
 
 	@Override
-	public List<Task> getAllResolvedTasks(Program program) {
+	public List<Task> getAllResolvedTasks(String programName) {
 		Connection connection = cm.createConnection();
 		List<Task> tasks = new ArrayList<>();
 		PreparedStatement preparedStatement;
 		ResultSet resultSet;
 		try {
 			preparedStatement = connection.prepareStatement("SELECT idProgram FROM program WHERE nameProgram= ?");
-			preparedStatement.setString(1, program.getNameProgram());
+			preparedStatement.setString(1,programName);
 			preparedStatement.execute();
 			resultSet = preparedStatement.executeQuery();
+			resultSet.next();
 			Integer programId = resultSet.getInt(1);
-			preparedStatement = connection.prepareStatement("SELECT taskName FROM task WHERE isSolved=1 AND partOf=? ");
+			preparedStatement = connection.prepareStatement("SELECT * FROM task WHERE isSolved=1 AND partOf=? ");
 			preparedStatement.setInt(1, programId);
 			resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
@@ -174,9 +175,10 @@ public class JdbcTaskDAO implements TaskDAO {
 				ps.setInt(1, resultSet.getInt("assignedTo"));
 				ps.execute();
 				ResultSet result = ps.executeQuery();
+				result.next();
 				String username = result.getString(1);
 				task.setAssignedTo(username);
-				task.setPartOf(program.getNameProgram());
+				task.setPartOf(programName);
 				tasks.add(task);
 				ps.close();
 				result.close();
@@ -191,6 +193,51 @@ public class JdbcTaskDAO implements TaskDAO {
 		return tasks;
 	}
 
+	@Override
+	public List<Task> getAllUnresolvedTasksForAnEvent(String programName) {
+		Connection connection = cm.createConnection();
+		List<Task> tasks = new ArrayList<>();
+		PreparedStatement preparedStatement;
+		ResultSet resultSet;
+		try {
+			preparedStatement = connection.prepareStatement("SELECT idProgram FROM program WHERE nameProgram= ?");
+			preparedStatement.setString(1,programName);
+			preparedStatement.execute();
+			resultSet = preparedStatement.executeQuery();
+			resultSet.next();
+			Integer programId = resultSet.getInt(1);
+			preparedStatement = connection.prepareStatement("SELECT * FROM task WHERE isSolved=0 AND partOf=? ");
+			preparedStatement.setInt(1, programId);
+			resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				Task task = new Task();
+				task.setIdTask(resultSet.getInt("idTask"));
+				task.setTaskName(resultSet.getString("taskName"));
+				task.setDetails(resultSet.getString("details"));
+				task.setIsSolved(resultSet.getBoolean("isSolved"));
+				task.setDeadline(resultSet.getDate("deadline"));
+				PreparedStatement ps = connection.prepareStatement("SELECT username FROM user WHERE idUser= ?");
+				ps.setInt(1, resultSet.getInt("assignedTo"));
+				ps.execute();
+				ResultSet result = ps.executeQuery();
+				result.next();
+				String username = result.getString(1);
+				task.setAssignedTo(username);
+				task.setPartOf(programName);
+				tasks.add(task);
+				ps.close();
+				result.close();
+			}
+			preparedStatement.close();
+			resultSet.close();
+		} catch (SQLException e) {
+			throw new DAOException("An error occured while getting all unresolved task for an event from database.");
+		} finally {
+			cm.closeConnection(connection);
+		}
+		return tasks;
+	}
+	
 	@Override
 	public List<Task> getAllLateTasks(Program program) {
 		// TODO

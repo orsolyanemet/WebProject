@@ -57,3 +57,23 @@ N
 WebContent/styles/userhome.css,8\7\87c78a7d41046de6fff1768fa9017eb022143443
 G
 WebContent/usermenu.jsp,4\4\444f4cd859478c82782b32b4fe526c788b49d646
+P
+ WebContent/styles/loginstyle.css,0\b\0b966ddd5c585e39699bb5c1094ab35775feccdc
+J
+WebContent/styles/home.css,4\9\4903b0f4952f3746b3eaafe6ac8f58cb3be56905
+K
+WebContent/styles/inbox.css,3\a\3acd7f1de6f4253d9a0d24ca448e13a4db794a6e
+F
+WebContent/js/inbox.js,d\a\da8c7cb474d2c2fa4baf18ab1bbe4d669ea36788
+F
+WebContent/js/trash.js,9\8\9825903e3b73b28ae252152d7190e285797f8c4d
+X
+(src/ro/edu/ubb/servlet/TrashServlet.java,5\d\5da06d9ba77c0f1edd7ce0a18abc356c388cdfa7
+D
+WebContent/inbox.jsp,a\6\a698842914927ce4ab566f46f2c4c05d4e145b8e
+D
+WebContent/trash.jsp,e\f\ef6aa2883d5c997a3055a58988cc77381b455e6d
+X
+(src/ro/edu/ubb/servlet/InboxServlet.java,e\0\e08c9cebb7e8c6242b930a5a01590023683a79a7
+C
+WebContent/logo.JPG,9\6\967cfc2dadf58133c7abb09b1432dd7f1bdbd869

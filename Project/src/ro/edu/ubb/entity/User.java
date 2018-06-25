@@ -1,5 +1,6 @@
 package ro.edu.ubb.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,8 +9,13 @@ import java.util.List;
  * @author Nemet Orsolya, noim1553, 532/1 csoport
  *
  */
-public class User{
+public class User implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Integer idUser;
 
 	private String firstname;

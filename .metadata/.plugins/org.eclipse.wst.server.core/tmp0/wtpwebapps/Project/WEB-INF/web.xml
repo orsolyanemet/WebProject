@@ -6,6 +6,7 @@
     </filter>
     <filter-mapping>
         <filter-name>PageFilter</filter-name>
+        <url-pattern>/index.html</url-pattern>
         <url-pattern>/userhome.jsp</url-pattern>
         <url-pattern>/adminhome.jsp</url-pattern>
         <url-pattern>/message.jsp</url-pattern>
@@ -19,6 +20,8 @@
         <url-pattern>/deleteuser.jsp</url-pattern>
         <url-pattern>/listtask.jsp</url-pattern>
         <url-pattern>/changestatus.jsp</url-pattern>
+        <url-pattern>/eventtasks.jsp</url-pattern>
+        <url-pattern>/eventtaskstable.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
