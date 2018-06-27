@@ -118,7 +118,6 @@ function submitButtonClicked() {
 			},
 			dataType : "json",
 			success : function(data) {
-					//TO-DO
 			}
 		});
 	}

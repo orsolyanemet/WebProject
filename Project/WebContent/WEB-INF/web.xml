@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
-        <filter-name>PageFilter</filter-name>
-        <filter-class>ro.edu.ubb.filter.PageFilter</filter-class>
+        <filter-name>PageFilterAdmin</filter-name>
+        <filter-class>ro.edu.ubb.filter.PageFilterAdmin</filter-class>
+    </filter>
+    <filter>
+        <filter-name>PageFilterOrganizer</filter-name>
+        <filter-class>ro.edu.ubb.filter.PageFilterOrganizer</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>PageFilter</filter-name>
+        <filter-name>PageFilterAdmin</filter-name>
         <url-pattern>/index.html</url-pattern>
-        <url-pattern>/userhome.jsp</url-pattern>
         <url-pattern>/adminhome.jsp</url-pattern>
-        <url-pattern>/message.jsp</url-pattern>
-        <url-pattern>/usermenubar.jsp</url-pattern>
         <url-pattern>/adminmenubar.jsp</url-pattern>
         <url-pattern>/event.jsp</url-pattern>
         <url-pattern>/neworganizer.jsp</url-pattern>
-        <url-pattern>/otherstask.jsp</url-pattern>
         <url-pattern>/composemessage.jsp</url-pattern>
         <url-pattern>/addtask.jsp</url-pattern>
         <url-pattern>/deleteuser.jsp</url-pattern>
-        <url-pattern>/listtask.jsp</url-pattern>
-        <url-pattern>/changestatus.jsp</url-pattern>
         <url-pattern>/eventtasks.jsp</url-pattern>
         <url-pattern>/eventtaskstable.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>PageFilterOrganizer</filter-name>
+        <url-pattern>/index.html</url-pattern>
+        <url-pattern>/userhome.jsp</url-pattern>
+        <url-pattern>/message.jsp</url-pattern>
+        <url-pattern>/usermenubar.jsp</url-pattern>
+        <url-pattern>/otherstask.jsp</url-pattern>
+        <url-pattern>/listtask.jsp</url-pattern>
+        <url-pattern>/changestatus.jsp</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

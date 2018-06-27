@@ -5,7 +5,6 @@ import java.util.List;
 import ro.edu.ubb.common.dao.DAOFactory;
 import ro.edu.ubb.common.dao.TaskDAO;
 import ro.edu.ubb.dao.DAOException;
-import ro.edu.ubb.entity.Program;
 import ro.edu.ubb.entity.Task;
 
 /**
@@ -56,22 +55,6 @@ public class TaskService {
 		}
 	}
 
-	public List<Task> getAllLateTasks(Program program) {
-		try {
-			return taskDAO.getAllLateTasks(program);
-		} catch (DAOException e) {
-			throw new ServiceException("Getting all late tasks failed.");
-		}
-	}
-
-	public Task getAllInformationAboutTask(Task task) {
-		try {
-			return taskDAO.getAllInformationAboutTask(task);
-		} catch (DAOException e) {
-			throw new ServiceException("Getting all information about task failed.");
-		}
-	}
-
 	public List<Task> getAllUserTasks(String username) {
 		try {
 			return taskDAO.getAllUserTasks(username);
@@ -80,9 +63,9 @@ public class TaskService {
 		}
 	}
 	
-	public void updateTask(Task task) {
+	public Integer updateTask(Task task) {
 		try {
-			 taskDAO.updateTask(task);
+			return taskDAO.updateTask(task);
 		} catch (DAOException e) {
 			throw new ServiceException("Update task failed.");
 		}

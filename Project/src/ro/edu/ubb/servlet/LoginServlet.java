@@ -32,7 +32,8 @@ public class LoginServlet extends HttpServlet {
 		req.getSession().setAttribute("msgPwdNotGiven", "");
 		req.getSession().setAttribute("msgUsernameNotGiven", "");
 		req.getSession().setAttribute("loggedUsername", "");
-		req.getSession().setAttribute("Authenticated","");
+		req.getSession().setAttribute("AuthenticatedAdmin","");
+		req.getSession().setAttribute("AuthenticatedOrganizer","");
 	}
 
 	@Override
@@ -46,11 +47,12 @@ public class LoginServlet extends HttpServlet {
 		if (userService.validateUser(user)) {
 			req.getSession().setAttribute("msgIncorrectData", "");
 			req.getSession().setAttribute("loggedUsername", user.getUsername());
-			req.getSession().setAttribute("Authenticated",user);
 			if(userService.findByUsername(user.getUsername()).getRoleType()==RoleType.ADMINISTRATOR) {
+				req.getSession().setAttribute("AuthenticatedAdmin",user);
 				dispatch("adminhome.jsp", req, res);
 			}
 			else if(userService.findByUsername(user.getUsername()).getRoleType()==RoleType.ORGANIZER){
+				req.getSession().setAttribute("AuthenticatedOrganizer",user);
 				dispatch("userhome.jsp", req, res);
 			}else {
 				dispatch("error.jsp", req, res);

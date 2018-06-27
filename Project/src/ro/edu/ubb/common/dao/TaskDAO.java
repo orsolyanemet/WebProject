@@ -3,7 +3,6 @@ package ro.edu.ubb.common.dao;
 import java.sql.Date;
 import java.util.List;
 
-import ro.edu.ubb.entity.Program;
 import ro.edu.ubb.entity.Task;
 
 /**
@@ -18,10 +17,8 @@ public interface TaskDAO {
 	List<Task> getAllUnresolvedTasks(String username);
 	List<Task> getAllResolvedTasks(String programName);
 	List<Task> getAllUnresolvedTasksForAnEvent(String programName);
-	List<Task> getAllLateTasks(Program program);
-	Task getAllInformationAboutTask(Task task);
 	List<Task> getAllUserTasks(String username);
-	void updateTask(Task task);
+	Integer updateTask(Task task);
 	List<Task> getAllOthersTasks(String username);
 	
 }

@@ -1,6 +1,7 @@
 package ro.edu.ubb.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -57,7 +58,9 @@ public class EventServlet extends HttpServlet{
 			program.setTargetDate(sqlDate);
 			program.setLocation(req.getParameter("eventLocation"));
 			program.setProgramType(ProgramType.valueOfIgnoreCase(req.getParameter("eventType")));
-			programService.createCheck(program);
+			PrintWriter out = res.getWriter();
+			out.println("{\"respons\": \"" + programService.createCheck(program) + "\"}");
+			out.flush();
 		}
 		catch(ServiceException | ParseException e) {
 			dispatch("error.jsp",req,res);

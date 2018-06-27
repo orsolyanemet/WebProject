@@ -100,7 +100,6 @@ public class JdbcProgramDAO implements ProgramDAO {
 			preparedStatement.close();
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println(e);
 			throw new DAOException("An error occured while getting all user's programs from database.");
 		} finally {
 			cm.closeConnection(connection);
@@ -183,7 +182,7 @@ public class JdbcProgramDAO implements ProgramDAO {
 		if(created!=null) {
 			return "OK";
 		}
-		return "NULL";		
+		return "ERROR";		
 	}
 
 	@Override

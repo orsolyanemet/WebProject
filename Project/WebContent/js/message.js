@@ -7,7 +7,13 @@ function deleteMessage(button,urlDepth){
 		data: { idToDelete: document.getElementsByName(button.name)[0].name} ,
 		dataType : "json",
 		success : function(data) {
-			window.location.replace(urlDepth + "message.jsp");
+			var respons = data.respons;
+			if (respons.localeCompare("OK") == 0) {
+				window.location.replace(urlDepth + "message.jsp");
+
+			} else {
+				window.location.replace(urlDepth + "error.jsp");
+			}
 		}
 	});
 }

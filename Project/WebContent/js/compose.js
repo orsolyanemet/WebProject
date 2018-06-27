@@ -14,7 +14,6 @@ function sendButtonClicked() {
 				},
 				dataType : "json",
 				success : function(data) {
-					//TODO
 				}
 			});
 }

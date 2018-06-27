@@ -56,7 +56,7 @@ public class NewOrganizerServlet extends HttpServlet{
 				userService.createCheck(user);
 			}
 			else {
-				//TODO
+				dispatch("error.jsp",req,res);
 			}
 		}
 		catch(ServiceException e) {

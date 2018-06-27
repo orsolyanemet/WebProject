@@ -1,7 +1,6 @@
 
-bsquid:S2095#"5Close this "PreparedStatement" in a "finally" clause.(ó²ÕşÿÿÿÿHù	RBLOCKERZBUG
-bsquid:S2095^"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿH÷	RBLOCKERZBUG
-bsquid:S2095;"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿHö	RBLOCKERZBUG
-bsquid:S2095A"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿHø	RBLOCKERZBUG
-squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(³å´Î8ÎÃø×¾,HãRMAJORZ
-CODE_SMELL
+\squid:S2095#"5Close this "PreparedStatement" in a "finally" clause.(Ëñ–)H¼GRBLOCKERZBUG
+bsquid:S2095L"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿH½GRBLOCKERZBUG
+bsquid:S2095g"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿH¾GRBLOCKERZBUG
+dsquid:S2095)"5Close this "PreparedStatement" in a "finally" clause.(Æ¼ÄÉ8¼¤úÕÃ,H¿GRBLOCKERZBUG
+bsquid:S2095E"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿH»GRBLOCKERZBUG

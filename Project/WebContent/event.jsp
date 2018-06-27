@@ -23,6 +23,9 @@
 	<h1>Add event</h1>
 	<div id="includedMenubar"></div>
 	<br>
+	<samp id="msg"></samp>
+	<br>
+	<br>
 	<form name="eventForm" method="POST">
 		<div class="form-group">
             <label>Event name:</label><br>

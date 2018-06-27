@@ -23,12 +23,17 @@
 	<div id="includedMenubar"></div>
 	<br>
 	<br>
-	<input type="button" class="button" value="Refresh"
-		onclick="refreshTable()">
 		<div class="panel panel-default inbox" id="editPanel">
 			<div class="table-responsive">
 				<table id="myTable"
 					class="table table-striped table-hover refresh-container pull-down">
+					<%
+								UserService userService = new UserService();
+								request.getSession().setAttribute("users",
+										userService.getAllUsers());
+								List<User> users = (List<User>) request.getSession().getAttribute("users");
+								if (users != null && !users.isEmpty()){
+					%>
 					<thead class="hidden-xs">
 						<tr>
 							<td></td>
@@ -39,16 +44,11 @@
 							<td><strong>Phone number</strong></td>
 						</tr>
 					</thead>
-					<tbody>
-						<tr>
 							<%
-								UserService userService = new UserService();
-								request.getSession().setAttribute("users",
-										userService.getAllUsers());
-								List<User> users = (List<User>) request.getSession().getAttribute("users");
-								if (users != null)
 									for (User user : users) {
 							%>
+					<tbody>
+						<tr>
 							<td><button id="button" onClick="deleteUser(this,'')" name=<%=user.getIdUser()%>><i class="fa fa-trash"></i></button></td>
 							<td>
 								<%
@@ -76,7 +76,14 @@
 								%>
 							</td>
 						</tr>
-						<%} %>
+						<%
+						}
+							}else{
+					%>
+					<label class="error">There are no users.</label>
+			<%
+				}
+			%>
 					</tbody>
 				</table>
 			</div>

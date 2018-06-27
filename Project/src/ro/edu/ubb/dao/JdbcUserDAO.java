@@ -182,16 +182,15 @@ public class JdbcUserDAO implements UserDAO {
 		Connection connection = cm.createConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
-					"UPDATE user SET firstname=?, lastname=?, email=?, phoneNumber=? where idUser = ?",
+					"UPDATE user SET firstname=?, lastname=?, email=?, phoneNumber=? where username = ?",
 					PreparedStatement.RETURN_GENERATED_KEYS);
 
 			preparedStatement.setString(1, user.getFirstname());
 			preparedStatement.setString(2, user.getLastname());
 			preparedStatement.setString(3, user.getEmail());
 			preparedStatement.setString(4, user.getPhoneNumber());
-			preparedStatement.setInt(5, user.getIdUser());
+			preparedStatement.setString(5, user.getUsername());
 			preparedStatement.execute();
-
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
 			resultSet.next();
 			preparedStatement.close();
@@ -221,9 +220,8 @@ public class JdbcUserDAO implements UserDAO {
 			preparedStatement.setInt(1, idUser);
 			result = preparedStatement.execute();
 			preparedStatement.close();
-
+			result=true;
 		} catch (SQLException e) {
-			System.out.println(e);
 			throw new DAOException("An error occured while deleting a user.");
 		} finally {
 			cm.closeConnection(connection);
@@ -257,7 +255,6 @@ public class JdbcUserDAO implements UserDAO {
 			preparedStatement.close();
 			resultSet.close();
 		} catch (SQLException e) {
-			System.out.println(e);
 			throw new DAOException("An error occured during the validation of user.");
 		} finally {
 			cm.closeConnection(connection);

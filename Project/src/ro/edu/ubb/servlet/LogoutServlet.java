@@ -39,7 +39,8 @@ public class LogoutServlet extends HttpServlet {
 			req.getSession().setAttribute("msgPwdNotGiven", "");
 			req.getSession().setAttribute("msgUsernameNotGiven", "");
 			req.getSession().setAttribute("loggedUsername", "");
-			req.getSession().setAttribute("Authenticated", null);
+			req.getSession().setAttribute("AuthenticatedAdmin", null);
+			req.getSession().setAttribute("AuthenticatedOrganizer", null);
 			req.getSession().setAttribute("solvedtasks",null);
 			req.getSession().setAttribute("unsolved",null);
 			dispatch("/login.jsp", req, res);

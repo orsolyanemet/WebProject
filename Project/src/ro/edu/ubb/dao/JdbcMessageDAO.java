@@ -89,7 +89,6 @@ public class JdbcMessageDAO implements MessageDAO {
 			return msg;
 
 		} catch (SQLException e) {
-			System.out.println(e);
 			throw new DAOException("An error occured while inserting the message.");
 		} finally {
 			cm.closeConnection(connection);

@@ -18,7 +18,7 @@
 			<li class="dropbtn"><a>Organizer</a>
 				<div class="dropdown-content">
 					<a href="neworganizer.jsp"><i class="fa fa-user-plus"></i> Add organizer</a> 
-					<a href=""><i class="fa fa-edit"></i> Edit organizer</a>
+					<a href="edituser.jsp"><i class="fa fa-edit"></i> Edit organizer</a>
 					<a href="deleteuser.jsp"><i class="fa fa-user-times"></i>  Delete organizer</a>
 				</div></li>
 		</div>

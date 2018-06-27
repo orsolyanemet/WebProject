@@ -1,6 +1,7 @@
 package ro.edu.ubb.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,7 +32,7 @@ public class DeleteUserServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		if(userService.findByUsername(req.getSession().getAttribute("loggedUsername").toString()).getRoleType()==RoleType.ADMINISTRATOR){
-			dispatch("edituser.jsp", req, res);
+			dispatch("deleteuser.jsp", req, res);
 		}
 		else {
 			dispatch("error.jsp",req,res);
@@ -41,7 +42,14 @@ public class DeleteUserServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			userService.deleteUser(Integer.parseInt(req.getParameter("idToDelete")));
+			PrintWriter out = res.getWriter();
+			if(userService.deleteUser(Integer.parseInt(req.getParameter("idToDelete")))) {
+				out.println("{\"respons\": \"" + "OK" + "\"}");
+			}
+			else {
+				out.println("{\"respons\": \"" + "ERROR" + "\"}");
+			}
+			out.flush();
 		}
 		catch(ServiceException e) {
 			dispatch("error.jsp",req,res);

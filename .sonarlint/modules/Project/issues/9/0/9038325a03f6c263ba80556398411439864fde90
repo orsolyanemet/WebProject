@@ -1,11 +1,26 @@
 
-bsquid:S2095x"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿH“
-RBLOCKERZBUG
-]squid:S2095A"5Close this "PreparedStatement" in a "finally" clause.(Å÷ËçH
-RBLOCKERZBUG
-]squid:S2095$"5Close this "PreparedStatement" in a "finally" clause.(Ç‘õH‘
-RBLOCKERZBUG
-bsquid:S2095Z"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿH’
-RBLOCKERZBUG
-„squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ô„ÿ•ÿÿÿÿÿ8Ì’ù×¾,HäRMAJORZ
+psquid:S1854´";Remove this useless assignment to local variable "created".(åúàœ8…°èÚÃ,HïHRMAJORZ
 CODE_SMELL
+dsquid:S2095-"5Close this "PreparedStatement" in a "finally" clause.(ŒŞïå8…°èÚÃ,HèHRBLOCKERZBUG
+squid:S1192("JDefine a constant instead of duplicating this literal "idProgram" 3 times.(ˆ©°8…°èÚÃ,HâHRCRITICALZ
+CODE_SMELL
+isquid:S2095~"5Close this "PreparedStatement" in a "finally" clause.(šê¢—úÿÿÿÿ8…°èÚÃ,HéHRBLOCKERZBUG
+isquid:S2095F"5Close this "PreparedStatement" in a "finally" clause.(™·üøøÿÿÿÿ8…°èÚÃ,HíHRBLOCKERZBUG
+€squid:S1192,"IDefine a constant instead of duplicating this literal "location" 3 times.(±¹©ß8…°èÚÃ,HáHRCRITICALZ
+CODE_SMELL
+csquid:S2095”"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿHŞHRBLOCKERZBUG
+‚squid:S1192+"KDefine a constant instead of duplicating this literal "targetDate" 3 times.(Å‹»Û8…°èÚÃ,HãHRCRITICALZ
+CODE_SMELL
+]squid:S2095u"5Close this "PreparedStatement" in a "finally" clause.(Å÷ËçHßHRBLOCKERZBUG
+ˆsquid:S1192)"LDefine a constant instead of duplicating this literal "nameProgram" 3 times.(ÿîâ¡şÿÿÿÿ8…°èÚÃ,HæHRCRITICALZ
+CODE_SMELL
+csquid:S2095À"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàıÿÿÿÿHàHRBLOCKERZBUG
+ˆsquid:S1192."LDefine a constant instead of duplicating this literal "programType" 3 times.(×ö¯²üÿÿÿÿ8…°èÚÃ,HäHRCRITICALZ
+CODE_SMELL
+bsquid:S2095$"5Close this "PreparedStatement" in a "finally" clause.(ÍøÏİúÿÿÿÿHİHRBLOCKERZBUG
+isquid:S2095L"5Close this "PreparedStatement" in a "finally" clause.(ß •¬ùÿÿÿÿ8…°èÚÃ,HëHRBLOCKERZBUG
+Šsquid:S1192*"SDefine a constant instead of duplicating this literal "descriptionProgram" 3 times.(Ìàòø8…°èÚÃ,HåHRCRITICALZ
+CODE_SMELL
+dsquid:S2095Q"5Close this "PreparedStatement" in a "finally" clause.(ºü…“8…°èÚÃ,HçHRBLOCKERZBUG
+csquid:S2095\"5Close this "PreparedStatement" in a "finally" clause.(ˆÅ’8…°èÚÃ,HêHRBLOCKERZBUG
+jsquid:S2095›"5Close this "PreparedStatement" in a "finally" clause.(Ò·’ğşÿÿÿÿ8…°èÚÃ,HìHRBLOCKERZBUG

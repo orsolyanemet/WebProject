@@ -29,6 +29,7 @@
 	<div id="includedMenubar"></div>
 	<br>
 	<br>
+	<samp id="msg"></samp>
 	<form name="statusForm" method="POST">
 			<%
 				TaskService taskService = new TaskService();

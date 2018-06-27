@@ -13,7 +13,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="styles/menu.css">
-<link rel="stylesheet" type="text/css" href="styles/listtask.css">
+<link rel="stylesheet" type="text/css" href="styles/listtasks.css">
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/navigator.js"></script>
 <script src="js/user.js"></script>
@@ -30,7 +30,14 @@
     </div>
 			<table id="myTable"
 				class="table table-striped table-hover refresh-container pull-down">
-				<thead class="hidden-xs">
+				<%
+							TaskService taskService = new TaskService();
+							request.getSession().setAttribute("tasks",
+									taskService.getAllUserTasks(((String)request.getSession().getAttribute("loggedUsername"))));
+							List<Task> tasks = (List<Task>) request.getSession().getAttribute("tasks");
+							if (tasks != null && !tasks.isEmpty()){
+				%>
+					<thead class="hidden-xs">
 					<tr>
 						<td><strong>Event</strong></td>
 						<td><strong>Task name</strong></td>
@@ -39,15 +46,10 @@
 						<td><strong>Deadline</strong></td>
 					</tr>
 				</thead>
-				<tbody>
 						<%
-							TaskService taskService = new TaskService();
-							request.getSession().setAttribute("tasks",
-									taskService.getAllUserTasks(((String)request.getSession().getAttribute("loggedUsername"))));
-							List<Task> tasks = (List<Task>) request.getSession().getAttribute("tasks");
-							if (tasks != null)
 								for (Task task : tasks) {
 						%>
+				<tbody>
 					<tr>
 						<td>
 							<%
@@ -87,6 +89,11 @@
 					</tr>
 					<%
 						}
+							}else{
+					%>
+					<label class="errorlabel">You don't have any tasks.</label>
+					<%
+							}
 					%>
 				</tbody>
 			</table>

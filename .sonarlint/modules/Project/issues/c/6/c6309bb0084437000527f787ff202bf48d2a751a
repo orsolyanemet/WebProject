@@ -1,10 +1,22 @@
 
-bsquid:S2095{"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàýÿÿÿÿH‚RBLOCKERZBUG
-ysquid:CommentedOutCodeLine°"<This block of commented-out lines of code should be removed.(†ÎäH…RMAJORZ
+csquid:S2095¸"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàýÿÿÿÿH€IRBLOCKERZBUG
+jsquid:S2095Õ"5Close this "PreparedStatement" in a "finally" clause.(ŽÁ’öûÿÿÿÿ8¬žÀÛÃ,HˆIRBLOCKERZBUG
+jsquid:S2095Ø"5Close this "PreparedStatement" in a "finally" clause.(Ü“Óøþÿÿÿÿ8¬žÀÛÃ,HIRBLOCKERZBUG
+dsquid:S2095z"5Close this "PreparedStatement" in a "finally" clause.(Ò»Èì8¬žÀÛÃ,HŒIRBLOCKERZBUG
+dsquid:S2095%"5Close this "PreparedStatement" in a "finally" clause.(ÏÃã—8¬žÀÛÃ,H‹IRBLOCKERZBUG
+bsquid:S2095D"5Close this "PreparedStatement" in a "finally" clause.(Á÷Å¯úÿÿÿÿH‚IRBLOCKERZBUG
+csquid:S2095í"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿHIRBLOCKERZBUG
+†squid:S1192*"JDefine a constant instead of duplicating this literal "firstname" 3 times.(»Ù•¹ùÿÿÿÿ8¬žÀÛÃ,H†IRCRITICALZ
 CODE_SMELL
-]squid:S2095!"5Close this "PreparedStatement" in a "finally" clause.(˜£´¨Hÿ
-RBLOCKERZBUG
-bsquid:S2095["5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàýÿÿÿÿHRBLOCKERZBUG
-csquid:S2095­"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿH„RBLOCKERZBUG
-bsquid:S2095@"5Close this "PreparedStatement" in a "finally" clause.(Á÷Å¯úÿÿÿÿH€RBLOCKERZBUG
-csquid:S2095–"5Close this "PreparedStatement" in a "finally" clause.(ÜÍË˜ûÿÿÿÿHƒRBLOCKERZBUG
+€squid:S1192+"IDefine a constant instead of duplicating this literal "lastname" 3 times.(¹„Žù8¬žÀÛÃ,H…IRCRITICALZ
+CODE_SMELL
+jsquid:S2095Ò"5Close this "PreparedStatement" in a "finally" clause.(Ö·ÜÓùÿÿÿÿ8¬žÀÛÃ,H‰IRBLOCKERZBUG
+usquid:S1854«";Remove this useless assignment to local variable "created".(ˆ»Ô¨ýÿÿÿÿ8¬žÀÛÃ,HIRMAJORZ
+CODE_SMELL
+esquid:S2095Û"5Close this "PreparedStatement" in a "finally" clause.(·øÇû8¬žÀÛÃ,H‡IRBLOCKERZBUG
+csquid:S2095Ž"5Close this "PreparedStatement" in a "finally" clause.(ô£ÇàýÿÿÿÿHÿHRBLOCKERZBUG
+ƒsquid:S1192/"LDefine a constant instead of duplicating this literal "phoneNumber" 3 times.(¯¾ö²8¬žÀÛÃ,HƒIRCRITICALZ
+CODE_SMELL
+€squid:S11920"IDefine a constant instead of duplicating this literal "roleType" 4 times.(™ÃõŸ8¬žÀÛÃ,H„IRCRITICALZ
+CODE_SMELL
+isquid:S2095_"5Close this "PreparedStatement" in a "finally" clause.(œ¯Ñ»üÿÿÿÿ8¬žÀÛÃ,HŠIRBLOCKERZBUG

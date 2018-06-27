@@ -1,6 +1,7 @@
 package ro.edu.ubb.servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -43,12 +44,14 @@ public class MessageServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
+			PrintWriter out = res.getWriter();
 			if(messageService.deleteMessage(Integer.parseInt(req.getParameter("idToDelete")))) {
-				dispatch("message.jsp", req, res);
+				out.println("{\"respons\": \"" + "OK" + "\"}");
 			}
 			else {
-				dispatch("error.jsp",req,res);
+				out.println("{\"respons\": \"" + "ERROR" + "\"}");
 			}
+			out.flush();
 		}
 		catch(ServiceException e) {
 			dispatch("error.jsp",req,res);

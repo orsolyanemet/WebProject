@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ro.edu.ubb.common.dao.TaskDAO;
-import ro.edu.ubb.entity.Program;
 import ro.edu.ubb.entity.Task;
 import ro.edu.ubb.util.ConnectionManager;
 
@@ -237,52 +236,6 @@ public class JdbcTaskDAO implements TaskDAO {
 		}
 		return tasks;
 	}
-	
-	@Override
-	public List<Task> getAllLateTasks(Program program) {
-		// TODO
-		return null;
-	}
-
-	@Override
-	public Task getAllInformationAboutTask(Task task) {
-		Connection connection = cm.createConnection();
-		PreparedStatement preparedStatement;
-		ResultSet resultSet;
-		try {
-			preparedStatement = connection.prepareStatement("SELECT * FROM task WHERE taskName=? ");
-			preparedStatement.setString(1, task.getTaskName());
-			resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				task.setIdTask(resultSet.getInt("idTask"));
-				task.setTaskName(resultSet.getString("taskName"));
-				task.setDetails(resultSet.getString("details"));
-				task.setIsSolved(resultSet.getBoolean("isSolved"));
-				task.setDeadline(resultSet.getDate("deadline"));
-				PreparedStatement ps = connection.prepareStatement("SELECT username FROM user WHERE idUser= ?");
-				ps.setInt(1, resultSet.getInt("assignedTo"));
-				ps.execute();
-				ResultSet result = ps.executeQuery();
-				String username = result.getString(1);
-				task.setAssignedTo(username);
-				ps = connection.prepareStatement("SELECT nameProgram FROM program WHERE idProgram= ?");
-				ps.setInt(1, resultSet.getInt("partOf"));
-				ps.execute();
-				result = ps.executeQuery();
-				String programName = result.getString(1);
-				task.setPartOf(programName);
-				ps.close();
-				result.close();
-			}
-			preparedStatement.close();
-			resultSet.close();
-		} catch (SQLException e) {
-			throw new DAOException("An error occured while getting all information about task from database.");
-		} finally {
-			cm.closeConnection(connection);
-		}
-		return task;
-	}
 
 	@Override
 	public List<Task> getAllUserTasks(String username) {
@@ -331,8 +284,9 @@ public class JdbcTaskDAO implements TaskDAO {
 	}
 
 	@Override
-	public void updateTask(Task task) {
+	public Integer updateTask(Task task) {
 		Connection connection = cm.createConnection();
+		Integer taskId=0;
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 					"UPDATE task SET isSolved=? where taskName = ?", PreparedStatement.RETURN_GENERATED_KEYS);
@@ -342,6 +296,7 @@ public class JdbcTaskDAO implements TaskDAO {
 			preparedStatement.execute();
 			ResultSet resultSet = preparedStatement.getGeneratedKeys();
 			resultSet.next();
+			taskId=resultSet.getInt(1);
 			preparedStatement.close();
 			resultSet.close();
 		} catch (SQLException e) {
@@ -349,6 +304,7 @@ public class JdbcTaskDAO implements TaskDAO {
 		} finally {
 			cm.closeConnection(connection);
 		}
+		return taskId;
 	}
 
 	@Override

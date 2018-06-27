@@ -26,49 +26,47 @@ import ro.edu.ubb.service.UserService;
  *
  */
 @WebServlet("/changestatus.do")
-public class ChangeStatusServlet extends HttpServlet{
-	
+public class ChangeStatusServlet extends HttpServlet {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8326508200066736249L;
-	private TaskService taskService= new TaskService();
-	private ReportService reportService= new ReportService();
-	private UserService userService= new UserService();
-	
+	private TaskService taskService = new TaskService();
+	private ReportService reportService = new ReportService();
+	private UserService userService = new UserService();
+
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		if(userService.findByUsername(req.getSession().getAttribute("loggedUsername").toString()).getRoleType()==RoleType.ORGANIZER){
+		if (userService.findByUsername(req.getSession().getAttribute("loggedUsername").toString())
+				.getRoleType() == RoleType.ORGANIZER) {
 			dispatch("changestatus.jsp", req, res);
-		}
-		else {
-			dispatch("error.jsp",req,res);
+		} else {
+			dispatch("error.jsp", req, res);
 		}
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		try {
-			if(req.getParameter("report")!="" || req.getParameter("report")!=null ) {
-				Report report=new Report();
+			if (req.getParameter("report") != "" || req.getParameter("report") != null) {
+				Report report = new Report();
 				report.setPartOf(req.getParameter("partOf"));
 				report.setReport(req.getParameter("report"));
-				report.setWrittenBy((String)req.getSession().getAttribute("loggedUsername"));
-				Date currentDate=new Date(Calendar.getInstance().getTime().getTime());
-				System.out.println(currentDate);
+				report.setWrittenBy((String) req.getSession().getAttribute("loggedUsername"));
+				Date currentDate = new Date(Calendar.getInstance().getTime().getTime());
 				report.setReportDate(currentDate);
 				reportService.createReport(report);
 			}
-			if(req.getParameter("solved").equals("true")) {
-				Task task=new Task();
+			if (req.getParameter("solved").equals("true")) {
+				Task task = new Task();
 				task.setTaskName(req.getParameter("partOf"));
 				task.setIsSolved(true);
-				task.setAssignedTo((String)req.getSession().getAttribute("loggedUsername"));
+				task.setAssignedTo((String) req.getSession().getAttribute("loggedUsername"));
 				taskService.updateTask(task);
 			}
-		}
-		catch(ServiceException e) {
-			dispatch("error.jsp",req,res);
+		} catch (ServiceException e) {
+			dispatch("error.jsp", req, res);
 		}
 	}
 
